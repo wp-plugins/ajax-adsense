@@ -343,6 +343,9 @@ if (!class_exists("EzGA")) {
           break;
         }
       }
+      if (empty($slug)) {
+        $slug = 'easy-adsense';
+      }
       $plugin_data = get_plugin_data("$dir$slug.php");
       $str = "{$plugin_data['Name']} V{$plugin_data['Version']}";
       if ($hide) {
