@@ -18,7 +18,7 @@ if (!class_exists("EzGA")) {
     static $metaOptions = array();
     static $plgPrice = array('easy-adsense' => 7.95,
         'adsense-now' => 6.95,
-        'google-adsense' => 9.45);
+        'google-adsense' => 8.95);
     static $border = '';
     static $kills = array('feed', 'page', 'sticky', 'home', 'front_page', 'category',
         'tag', 'archive', 'search', 'single', 'attachment');

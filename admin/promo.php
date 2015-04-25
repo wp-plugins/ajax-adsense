@@ -17,10 +17,10 @@ else if (EzGA::isPro()) {
   ?>
   <div class="clearfix">&nbsp;</div>
   <div class="col-md-3 col-sm-3 col-xs-6 goPro" data-product='google-adsense'>
-    <a data-toggle="tooltip" title="Get Google AdSense Ultra for only $9.45. This flagship AdSense plugin can operate in basic (Now! Plugin for AdSense), advanced (Ads EZ Plugin for Google AdSense) and expert (Easy Plugin for AdSense) modes. Instant download." class="well top-block goPro" href="http://buy.thulasidas.com/google-adsense" data-product='google-adsense'>
+    <a data-toggle="tooltip" title="Get Google AdSense Ultra for only $8.95. This flagship AdSense plugin can operate in basic (Now! Plugin for AdSense), advanced (Ads EZ Plugin for Google AdSense) and expert (Easy Plugin for AdSense) modes. Instant download." class="well top-block goPro" href="http://buy.thulasidas.com/google-adsense" data-product='google-adsense'>
       <i class="glyphicon glyphicon-shopping-cart red"></i>
       <div>Get Google AdSense Ultra &nbsp;&nbsp;<span class='label label-info moreInfo'>More Info</span></div>
-      <div>$9.45. Instant Download</div>
+      <div>$8.95. Instant Download</div>
     </a>
   </div>
   <?php
