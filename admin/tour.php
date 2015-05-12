@@ -1,6 +1,7 @@
 <?php
 $plgName = EzGA::getPlgName();
 $plgSlug = EzGA::getSlug();
+$plgModeName = EzGA::$pluginModes[$plgSlug];
 $plgMode = EzGA::getPlgMode();
 $isUltra = $plgMode == 'google-adsense-ultra';
 ?>
@@ -56,11 +57,41 @@ $isUltra = $plgMode == 'google-adsense-ultra';
 <hr />
 <p class="center-text">
   <a class="btn btn-primary center-text restart" href="#" data-toggle='tooltip' title='Start or restart the tour any time' id='restart'><i class="glyphicon glyphicon-globe icon-white"></i>&nbsp; Start Tour</a>
+
+  <a href='<?php echo $plgSlug; ?>-admin.php' class="btn btn-warning" data-toggle='tooltip' title="<p>Set up the plugin options and enter your AdSense code and details. You can also click on the <strong><?php echo $plgModeName; ?></strong> tab above.</p>"><i class='glyphicon glyphicon-cog'></i> Setup Plugin</a>
+
+  <a href='#' id='suspendAds' class="btn btn-danger" data-toggle='tooltip' title="<p>Pause ad serving.</p>"><i class='glyphicon glyphicon-pause'></i> Suspend Ads</a>
+
+  <a href='#' id='resumeAds' style='display:none' class="btn btn-success" data-toggle='tooltip' title="<p>Resume ad serving.</p>"><i class='glyphicon glyphicon-play'></i> Resume Ads</a>
+
+  <a href='#' id='migrateOptions' class="btn btn-success" data-toggle='tooltip' title="<p>This version of the plugin uses a new option model. If you used an older version before, your options are automatically imported when you activate the plugin. If you find them missing, please click this button to import them again. Note that your modified options are never overwritten by the migration process; so it is safe to run it again.</p>"><i class='glyphicon glyphicon-import'></i> Import Options</a>
+
   <a class="btn btn-primary center-text showFeatures" href="#" data-toggle='tooltip' title='Show the features of this plugin and its Pro version'><i class="glyphicon glyphicon-thumbs-up icon-white"></i>&nbsp; Show Features</a>
+
   <a class="btn btn-warning center-text showKillAjax" href="#" data-toggle='tooltip' title='If you need to, you can get the old non-AJAX version of the plugin. Click to find out how.'><i class="glyphicon glyphicon-info-sign icon-white"></i>&nbsp; Show AJAX Info</a>
 </p>
 <script>
   $(document).ready(function () {
+    $("#suspendAds").click(function () {
+      suspendAds('suspend');
+    });
+    $("#resumeAds").click(function () {
+      suspendAds('resume');
+    });
+    $("#migrateOptions").click(function (e) {
+      e.preventDefault();
+      var data = {};
+      data.action = 'migrate';
+      $.ajax({url: 'ajax/optionset.php',
+        type: 'POST',
+        data: data,
+        success: function (a) {
+          flashSuccess(a);
+        },
+        error: function (a) {
+          showError(a.responseText);
+        }});
+    });
     if (!$('.tour').length && typeof (tour) === 'undefined') {
       var tour = new Tour({backdrop: true, backdropPadding: 20,
         onShow: function (t) {
