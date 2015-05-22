@@ -5,12 +5,11 @@ $plgPrice = EzGA::$plgPrice;
 openBox("Upgrades");
 if (EzGA::$isPro) {
   ?>
-  <div class="col-sm-6 col-xs-12 goPro" data-product="<?php echo $plgSlug; ?>">
-    <a data-toggle="tooltip" title="Thank you for using <?php echo $plgName; ?>. It is licensed on a per-installation basis. If you need more licenses, please get them for only $<?php echo $plgPrice[$plgSlug]; ?> each." class="well top-block goPro" href="http://buy.thulasidas.com/<?php echo $plgSlug; ?>">
-      <i class="glyphicon glyphicon-shopping-cart red"></i>
-      <div><?php echo $plgName; ?></div>
-      <div>Get additional licenses at $<?php echo $plgPrice[$plgSlug]; ?>.</div>
-      <span class="notification red">Pro</span>
+  <div class="col-sm-6 col-xs-12 goPro" data-product='ads-ez'>
+    <a data-toggle="tooltip" title="Start your own ad server for only $14.95. Instant download. Fully compatible with Easy AdSense and AdSense Now! Serve and track ads to multiple blogs and websites." class="well top-block goPro" href="http://buy.thulasidas.com/ads-ez" data-product='ads-ez'>
+      <i class="glyphicon glyphicon-shopping-cart red center-text"></i>
+      <div>Get Ads EZ Pro &nbsp;&nbsp;<span class='label label-info moreInfo'>More Info</span></div>
+      <div>$14.95. Instant Download</div>
     </a>
   </div>
   <?php
@@ -37,5 +36,12 @@ else {
   </a>
 </div>
 <div class="clearfix"></div>
+<script>
+  $(".moreInfo").click(function () {
+    var product = $(this).parent().closest('a').attr('data-product');
+    ezPopUp("http://www.thulasidas.com/" + product, product, 1000, 1024);
+    return false;
+  });
+</script>
 <?php
 closeBox();

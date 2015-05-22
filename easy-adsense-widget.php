@@ -29,6 +29,9 @@ if (!class_exists("EzAdsWidget")) {
 
     function getTitle() {
       $plg = self::$plg;
+      if (!empty($plg->options['kill_widget_title'])) {
+        return;
+      }
       if (empty($plg->options['title_widget'])) {
         $title = __('Sponsored Links', 'easy-adsenser');
       }

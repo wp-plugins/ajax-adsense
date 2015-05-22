@@ -4,23 +4,21 @@ $plgSlug = EzGA::getSlug();
 $plgPrice = EzGA::$plgPrice;
 if ($plgName == 'Google AdSense Ultra') {
   ?>
-  <div class="col-md-3 col-sm-3 col-xs-6 goPro">
-    <a data-toggle="tooltip" title="Start your own ad server for only $14.95. Instant download." class="well top-block goPro" href="http://buy.thulasidas.com/ads-ez" data-product='ads-ez'>
-      <i class="glyphicon glyphicon-shopping-cart red center-text"></i>
-      <div>Get Ads EZ Pro &nbsp;&nbsp;<span class='label label-info moreInfo'>More Info</span></div>
-      <div>$14.95. Instant Download</div>
-    </a>
-  </div>
-  <?php
+<div class="col-md-3 col-sm-6 goPro">
+  <a data-toggle="tooltip" title="Do you have an eBook, image or any other digital product to sell? Get EZ PayPal and start your e-store in minutes!." class="well top-block goPro" href="http://buy.thulasidas.com/ezpaypal">
+    <i class="glyphicon glyphicon-shopping-cart red"></i>
+    <div>Get EZ PayPal Pro</div>
+    <div>$19.95. Instant Download</div>
+  </a>
+</div>  <?php
 }
 else if (EzGA::isPro()) {
   ?>
-  <div class="clearfix">&nbsp;</div>
-  <div class="col-md-3 col-sm-3 col-xs-6 goPro" data-product='google-adsense'>
-    <a data-toggle="tooltip" title="Get Google AdSense Ultra for only $8.95. This flagship AdSense plugin can operate in basic (Now! Plugin for AdSense), advanced (Ads EZ Plugin for Google AdSense) and expert (Easy Plugin for AdSense) modes. Instant download." class="well top-block goPro" href="http://buy.thulasidas.com/google-adsense" data-product='google-adsense'>
-      <i class="glyphicon glyphicon-shopping-cart red"></i>
-      <div>Get Google AdSense Ultra &nbsp;&nbsp;<span class='label label-info moreInfo'>More Info</span></div>
-      <div>$8.95. Instant Download</div>
+  <div class="col-md-3 col-sm-3 col-xs-6 goPro">
+    <a data-toggle="tooltip" title="Start your own ad server for only $14.95. Instant download. Fully compatible with Easy AdSense and AdSense Now! Serve and track ads to multiple blogs and websites." class="well top-block goPro" href="http://buy.thulasidas.com/ads-ez" data-product='ads-ez'>
+      <i class="glyphicon glyphicon-shopping-cart red center-text"></i>
+      <div>Get Ads EZ Pro &nbsp;&nbsp;<span class='label label-info moreInfo'>More Info</span></div>
+      <div>$14.95. Instant Download</div>
     </a>
   </div>
   <?php
@@ -64,7 +62,7 @@ else {
 <script>
   $(".moreInfo").click(function () {
     var product = $(this).parent().closest('a').attr('data-product');
-    ezPopUp("http://www.thulasidas.com/" + product, product, 1024, 1024);
+    ezPopUp("http://www.thulasidas.com/" + product, product, 1000, 1024);
     return false;
   });
 </script>

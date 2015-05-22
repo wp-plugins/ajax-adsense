@@ -4,7 +4,7 @@ Donate link: http://buy.thulasidas.com/easy-adsense
 Tags: adsense, google adsense, ads, advertising, easy adsense, google, adsense plugin
 Requires at least: 2.6
 Tested up to: 4.2
-Stable tag: 8.41
+Stable tag: 8.42
 License: GPL2 or later
 
 Easy AdSense manages all aspects of AdSense: insert ads into posts and sidebar, and add a Google Search box. Easiest and most complete AdSense Plugin!
@@ -13,9 +13,11 @@ Easy AdSense manages all aspects of AdSense: insert ads into posts and sidebar, 
 
 AJAX Plugin for AdSense provides a very easy way to generate revenue from your blog using Google AdSense. With its full set of features, AJAX Plugin for AdSense is perhaps the first plugin to give you a complete solution for everything AdSense-related. The admin interface of this plugin uses a highly functional and modern interface based on the twitter bootstrap framework with generous, context-sensitive help on every single option.
 
+If you have multiple blogs or websites where you would like your ads to appear, you may want to try [Ads EZ](http://www.thulasidas.com/ads-ez "Personal Ad Server") - a personal ad server fully compatible with this plugin. It is also available in the WordPress plugin directory.
+
 = Live Demo =
 
-**Easy AdSense admin interface is feature-rich, user-friendly and functional. Please visit this fully operational [live demo site](http://demo.thulasidas.com/easy-adsense "Play with Easy AdSense Admin Interface") to see what it can do for you.**
+*Easy AdSense admin interface is feature-rich, user-friendly and functional. Please visit this fully operational* **[live demo site](http://demo.thulasidas.com/easy-adsense "Play with Easy AdSense Admin Interface")** *to see what it can do for you.*
 
 = Features =
 
@@ -54,7 +56,7 @@ AJAX Plugin for AdSense is the freely distributed version of a premium plugin. T
 
 == Upgrade Notice ==
 
-Admin page compatibility checks and improvements.
+Fixing a bug that disabled suppressing widget titles.
 
 == Screenshots ==
 
@@ -162,6 +164,7 @@ A big "Thank You" to all my translators. Easy AdSense V2.6+ sports an *Easy Tran
 
 == Change Log ==
 
+* V8.42: Fixing a bug that disabled suppressing widget titles. [May 22, 2015]
 * V8.41: Admin page compatibility checks and improvements. [May 12, 2015]
 * V8.40: Compatibility with WordPress 4.2. [April 25, 2015]
 * V8.31: Minor fix for ajax-adsense compatibility. [April 19, 2015]
