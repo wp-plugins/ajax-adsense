@@ -4,7 +4,7 @@ Donate link: http://buy.thulasidas.com/easy-adsense
 Tags: adsense, google adsense, ads, advertising, easy adsense, google, adsense plugin
 Requires at least: 2.6
 Tested up to: 4.2
-Stable tag: 8.42
+Stable tag: 8.43
 License: GPL2 or later
 
 Easy AdSense manages all aspects of AdSense: insert ads into posts and sidebar, and add a Google Search box. Easiest and most complete AdSense Plugin!
@@ -56,7 +56,7 @@ AJAX Plugin for AdSense is the freely distributed version of a premium plugin. T
 
 == Upgrade Notice ==
 
-Fixing a bug that disabled suppressing widget titles.
+Documentation changes only.
 
 == Screenshots ==
 
@@ -136,6 +136,19 @@ All `<div>`s that AJAX Plugin for AdSense creates have the class attribute `adse
 
 Yes! Now, in V2.1+, you have more options (using [Custom Fields](http://codex.wordpress.org/Custom_Fields "Scroll down to the section titled Usage")) to control adsense blocks in individual posts/pages. Add custom fields with keys like `adsense-top`, `adsense-middle`, `adsense-bottom`, `adsense-widget`, `adsense-search` and with values like `left`, `right`, `center` or `no` to have control how the Google adsense blocks show up in each post or page. A Custom Field `adsense` with  value `no` suppresses all AdSense ad blocks in the post or page.
 
+= How do I use shortcodes? =
+
+In the Pro version of this plugin, you can control the ad placements using the shortcode `[adsense]` in your blog posts and pages. If you would like to place your ads using shortcodes, please enable it on the Pro page. You can also specify a second argument like `[adsense leadin]` to insert the lead-in ad, for example. The second argument can be `leadin`, `midpost`, or `leadout`.
+
+By default, only those ads specified by the shortcode will be displayed (when shortcodes are enabled). You can specify how the plugin handles shortcode priority using a drop-down menu. You have these choices:
+
+* Do auto placements if shortcode is missing
+* Do not place any ads if shortcode is missing
+* Always ignore shortcodes and do only auto placement
+* Do not place any ads in posts/pages
+
+The last option effectively disables the plugin for the body of posts and pages, leaving the widgets unaffected.
+
 = I find this *easy* plugin too complex with too many options. Any alternatives? =
 
 If you feel that the features of AJAX Plugin for AdSense are a bit too much, consider my lean and mean AdSense plugin [AdSense Now!](http://www.thulasidas.com/plugins/adsense-now "The simplest possible way to AdSense enable your blog")
@@ -164,6 +177,7 @@ A big "Thank You" to all my translators. Easy AdSense V2.6+ sports an *Easy Tran
 
 == Change Log ==
 
+* V8.43: Documentation changes only. [Jun 18, 2015]
 * V8.42: Fixing a bug that disabled suppressing widget titles. [May 22, 2015]
 * V8.41: Admin page compatibility checks and improvements. [May 12, 2015]
 * V8.40: Compatibility with WordPress 4.2. [April 25, 2015]
