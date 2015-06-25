@@ -4,7 +4,7 @@ Donate link: http://buy.thulasidas.com/easy-adsense
 Tags: adsense, google adsense, ads, advertising, easy adsense, google, adsense plugin
 Requires at least: 2.6
 Tested up to: 4.2
-Stable tag: 8.43
+Stable tag: 8.44
 License: GPL2 or later
 
 Easy AdSense manages all aspects of AdSense: insert ads into posts and sidebar, and add a Google Search box. Easiest and most complete AdSense Plugin!
@@ -56,7 +56,7 @@ AJAX Plugin for AdSense is the freely distributed version of a premium plugin. T
 
 == Upgrade Notice ==
 
-Documentation changes only.
+Minor changes in links.
 
 == Screenshots ==
 
@@ -85,7 +85,7 @@ Although the AJAX Plugin for AdSense plugin is designed to handle Google AdSense
 
 == Frequently Asked Questions ==
 
-= Why doesn't my home/front page show no ads? =
+= Why does my home/front page show no ads? =
 
 Ads are inserted by attaching a filter to the contents. If your home/front page is made up of full posts, the content filter will apply and you will see ads. On the other hand, if your home/front page is made up of excerpts (snippets of post contents), the content filter doesn't apply.
 
@@ -177,6 +177,7 @@ A big "Thank You" to all my translators. Easy AdSense V2.6+ sports an *Easy Tran
 
 == Change Log ==
 
+* V8.44: Minor changes in links. [Jun 25, 2015]
 * V8.43: Documentation changes only. [Jun 18, 2015]
 * V8.42: Fixing a bug that disabled suppressing widget titles. [May 22, 2015]
 * V8.41: Admin page compatibility checks and improvements. [May 12, 2015]

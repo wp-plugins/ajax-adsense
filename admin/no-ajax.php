@@ -7,18 +7,8 @@ if ($isPro) {
   $downloadURL = "http://buy.thulasidas.com/update.php' class='popup";
 }
 else {
-  switch ($plgMode) {
-    case 'google-adsense':
-    case 'google-adsense-ultra':
-      $downloadURL = "https://downloads.wordpress.org/plugin/google-adsense-lite.1.81.zip";
-      break;
-    case 'adsense-now':
-      $downloadURL = "https://downloads.wordpress.org/plugin/adsense-now-lite.3.60.zip";
-      break;
-    case 'easy-adsense':
-      $downloadURL = "https://downloads.wordpress.org/plugin/easy-adsense-lite.7.61.zip";
-      break;
-  }
+  $plgModeTrimmed = str_replace('-ultra', '', $plgMode);
+  $downloadURL = "http://buy.thulasidas.com/lite/$plgModeTrimmed-lite-no-AJAX.zip";
 }
 if (empty($downloadURL)) {
   return;
