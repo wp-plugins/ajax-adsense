@@ -193,8 +193,8 @@ class Migrator {
   plugin_slug varchar(255) DEFAULT '' NOT NULL,
   theme varchar(255) DEFAULT '' NOT NULL,
   provider varchar(255) DEFAULT '' NOT NULL,
-  optionset varchar(255) NOT NULL,
-  name varchar(255) NOT NULL,
+  optionset varchar(255) DEFAULT 'Default' NOT NULL,
+  name varchar(255) DEFAULT '' NOT NULL,
   value text NOT NULL,
   PRIMARY KEY id (id),
   UNIQUE KEY option_id (plugin_slug(64), theme(64), optionset(64), name(64))

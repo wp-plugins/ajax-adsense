@@ -18,7 +18,7 @@ if (!class_exists("EzGA")) {
     static $metaOptions = array();
     static $plgPrice = array('easy-adsense' => 7.95,
         'adsense-now' => 6.95,
-        'google-adsense' => 8.95);
+        'google-adsense' => 9.45);
     static $border = '';
     static $kills = array('feed', 'page', 'sticky', 'home', 'front_page', 'category',
         'tag', 'archive', 'search', 'single', 'attachment');
@@ -27,13 +27,25 @@ if (!class_exists("EzGA")) {
     static $noAdsReason = '';
 
     static function isActive() {
+      if (strpos(__FILE__, 'mu-plugins') !== false) {
+        return true;
+      }
+      if (class_exists("GoogleAdSense")) {
+        return true;
+      }
       if (!function_exists('is_plugin_active')) {
         include_once ABSPATH . 'wp-admin/includes/plugin.php';
       }
       $plgSlug = self::getPlgMode();
       $plgSlug = str_replace("-ultra", "", $plgSlug);
       $plugin = basename(dirname(__FILE__)) . "/$plgSlug.php";
-      return is_plugin_active($plugin) || strpos(__FILE__, 'mu-plugins');;
+      if (is_plugin_active($plugin)) {
+        return true;
+      }
+      if (is_plugin_active_for_network($plugin)) {
+        return true;
+      }
+      return false;
     }
 
     static function isLoggedIn() {
@@ -1009,8 +1021,8 @@ if (!function_exists('http_response_code')) {
   function http_response_code($newcode = NULL) {
     static $code = 200;
     if ($newcode !== NULL) {
-      header('X-PHP-Response-Code: ' . $newcode, true, $newcode);
       if (!headers_sent()) {
+        header('X-PHP-Response-Code: ' . $newcode, true, $newcode);
         $code = $newcode;
       }
     }
