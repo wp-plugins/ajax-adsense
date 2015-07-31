@@ -275,3 +275,5 @@ EOF;
           http_response_code(200);
           echo $header;
 
+          EZWP::putGenOption('last_iframe_src', basename($_SERVER["PHP_SELF"]));
+          

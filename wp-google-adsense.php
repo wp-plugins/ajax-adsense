@@ -49,6 +49,7 @@ if (is_admin()) {
         require_once 'admin/Migrator.php';
         $migrator = new Migrator();
         $migrator->migrate();
+        EZWP::putGenOption('last_iframe_src', 'index.php');
         return;
       }
 
@@ -118,6 +119,10 @@ if (is_admin()) {
           });
         </script>
         <?php
+        $lastSrc = EZWP::getGenOption('last_iframe_src');
+        if (!empty($lastSrc)) {
+          $src = plugins_url("admin/$lastSrc", __FILE__);
+        }
         echo "<iframe src='$src' frameborder='0' style='width:100%;position:absolute;top:5px;left:-10px;right:0px;bottom:0px;' width='100%' height='900px' id='the_iframe' onLoad='calcHeight();'></iframe>";
       }
 

@@ -157,15 +157,9 @@ class EzAdSenseFront {
       if (self::$ezCount < self::$ezMax && $adCount++ < $adMax) {
         if (!EzGA::$foundShortCode) {
           $paras = EzGA::findParas($content);
-          $half = sizeof($paras);
-          while (sizeof($paras) > $half) {
-            array_pop($paras);
-          }
-          $split = 0;
-          if (!empty($paras)) {
-            $split = $paras[floor(sizeof($paras) / 2)];
-          }
-          if ($this->options['force_midad'] || $half > 10) {
+          $nParas = count($paras);
+          $split = EzGA::getSplit($content);
+          if ($this->options['force_midad'] || $nParas > 10) {
             $midtext = $this->mkAdBlock("midtext");
             $content = substr($content, 0, $split) . $midtext . substr($content, $split);
           }

@@ -200,6 +200,10 @@ class Migrator {
   UNIQUE KEY option_id (plugin_slug(64), theme(64), optionset(64), name(64))
 ) $charset;";
     $wpdb->query($sql);
+    $sql = "ALTER TABLE {$table}
+   ALTER COLUMN optionset SET DEFAULT 'Default',
+   ALTER COLUMN name SET DEFAULT ''";
+    $wpdb->query($sql);
   }
 
   function migrate($verbose = false) {

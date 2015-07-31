@@ -25,6 +25,7 @@ if (!class_exists("EzGA")) {
     static $unSettable = array('Phone', 'Tablet', 'All', 'Mobile');
     static $noAds = false;
     static $noAdsReason = '';
+    static $paras = array();
 
     static function isActive() {
       if (strpos(__FILE__, 'mu-plugins') !== false) {
@@ -972,19 +973,41 @@ if (!class_exists("EzGA")) {
     }
 
     static function findParas($content) {
-      $content = strtolower($content);  // not using stripos() for PHP4 compatibility
+      if (!empty(self::$paras)) {
+        return self::$paras;
+      }
       $paras = array();
       $lastpos = -1;
       $paraMarker = "<p";
-      if (strpos($content, "<p") === false) {
+      if (stripos($content, "<p") === false) {
         $paraMarker = "<br";
       }
-
-      while (strpos($content, $paraMarker, $lastpos + 1) !== false) {
-        $lastpos = strpos($content, $paraMarker, $lastpos + 1);
+      while ($lastpos !== false) {
+        $lastpos = stripos($content, $paraMarker, $lastpos + 1);
         $paras[] = $lastpos;
       }
+      self::$paras = $paras;
       return $paras;
+    }
+
+    static function getSplit($content) {
+      $paras = EzGA::findParas($content);
+      $split = 0;
+      if (!empty($paras)) {
+        $nParas = count($paras);
+        if (!empty(EZGA::$options['para_split'])) {
+          if ($nParas > EZGA::$options['para_split']) {
+            $split = $paras[EZGA::$options['para_split']];
+          }
+          else {
+            $split = $nParas;
+          }
+        }
+        else {
+          $split = $paras[floor($nParas / 2)];
+        }
+      }
+      return $split;
     }
 
     static function mkBorder() {
