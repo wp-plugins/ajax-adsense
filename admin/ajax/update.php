@@ -64,6 +64,14 @@ foreach ($toVerify as $d) {
   if ($idx === false) {
     $idx = $zip->locateName($d);
   }
+  if ($idx === false && $slug == 'ajax-adsense') {
+    // check for ajax-adsense upgrade to easy-adsense-pro
+    $d = str_replace($slug, 'easy-adsense', $d);
+    $idx = $zip->locateName($d, ZipArchive::FL_NODIR);
+    if ($idx === false) {
+      $idx = $zip->locateName($d);
+    }
+  }
   if ($idx === false) {
     $error = "Cannot locate a critical file (<code>$d</code>) in the uploaded zip file.";
     http_response_code(400);
