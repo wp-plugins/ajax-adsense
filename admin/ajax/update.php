@@ -36,7 +36,7 @@ if (Ftp::isNeeded($target)) {
     $error = "Cannot overwrite the plugin files! Here are your options to proceed."
             . "<ul><li>Enter or edit the FTP credentials below, if available. Contact your server admin for details.</li>"
             . "<li>Disable and delete the current version of the plugin, and use the WordPress interface <ol><li>Plugins &rarr; Add New</li><li>Click on <code>Upload Plugin</code></li><li>Choose the downloaded zip file</li><li>Click on Insall Now.</li></ol></li>"
-            . "<li>Unpack the downloaded zip file and upload the rest to your server, overwriting the existing files.</li>"
+            . "<li>Unpack the downloaded zip file and upload to your server, overwriting the existing files.</li>"
             . "<li>Make your installation updatable by using this Unix command or equivalent:<pre><code>chmod -R 777 $target</code></pre></li></ul>";
     http_response_code(400);
     die($error);

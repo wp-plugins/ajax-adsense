@@ -197,7 +197,7 @@ class Migrator {
   name varchar(255) DEFAULT '' NOT NULL,
   value text NOT NULL,
   PRIMARY KEY id (id),
-  UNIQUE KEY option_id (plugin_slug(64), theme(64), optionset(64), name(64))
+  UNIQUE KEY option_id (plugin_slug(32), theme(32), optionset(32), name(32))
 ) $charset;";
     $wpdb->query($sql);
     $sql = "ALTER TABLE {$table}

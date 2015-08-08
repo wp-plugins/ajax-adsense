@@ -11,7 +11,7 @@ if (is_admin()) {
       var $ezTran, $slug, $domain;
 
       function GoogleAdSense() { //constructor
-        $this->plgDir = dirname(__FILE__);
+        $this->plgDir = __DIR__;
         $this->plgURL = plugin_dir_url(__FILE__);
         $this->isPro = file_exists("{$this->plgDir}/admin/options-advanced.php");
         $this->slug = EZWP::getSlug("{$this->plgDir}/admin");
@@ -198,7 +198,7 @@ if (is_admin()) {
       }
       add_action('admin_menu', array($gAd, 'addAdminPage'));
       $gAd->addWidgets();
-      $file = dirname(__FILE__) . "/{$gAd->slug}.php";
+      $file = __DIR__ . "/{$gAd->slug}.php";
       register_activation_hook($file, array("GoogleAdSense", 'install'));
       add_action('switch_theme', array("GoogleAdSense", 'switchTheme'));
     }

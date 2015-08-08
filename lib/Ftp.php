@@ -74,7 +74,7 @@ if (!class_exists('Ftp')) {
     }
 
     function guessDir() {
-      $dir0 = dirname(__FILE__);
+      $dir0 = __DIR__;
       $ds = DIRECTORY_SEPARATOR;
       $parts = explode($ds, $dir0);
       foreach ($parts as $p) {

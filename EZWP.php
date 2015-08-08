@@ -14,7 +14,7 @@ if (!class_exists('EZWP')) {
         'ajax-adsense' => 'AJAX AdSense');
 
     static function isPro() {
-      $file = dirname(__FILE__) . "/admin/pro.php";
+      $file = __DIR__ . "/admin/pro.php";
       self::$isPro = file_exists($file);
       return self::$isPro;
     }
@@ -30,7 +30,7 @@ if (!class_exists('EZWP')) {
       $required = array('../%s-frontend.php', '%s-admin.php', '%s-options.php');
       $pwd = getcwd();
       if (empty($dir)) {
-        $dir = dirname(__FILE__) . "/admin";
+        $dir = __DIR__ . "/admin";
       }
       chdir($dir);
       if ($mode == "ajax-adsense") {

@@ -39,7 +39,7 @@ if (!class_exists("EzGA")) {
       }
       $plgSlug = self::getPlgMode();
       $plgSlug = str_replace("-ultra", "", $plgSlug);
-      $plugin = basename(dirname(__FILE__)) . "/$plgSlug.php";
+      $plugin = basename(__DIR__) . "/$plgSlug.php";
       if (is_plugin_active($plugin)) {
         return true;
       }
