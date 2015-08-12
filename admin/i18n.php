@@ -1,5 +1,5 @@
 <?php
-require('header.php');
+require 'header.php';
 ?>
 <div>
   <ul class="breadcrumb">
@@ -19,4 +19,4 @@ openBox("Languages and Internationlization", "globe");
 <?php
 closeBox();
 include 'promo.php';
-require('footer.php');
+require 'footer.php';

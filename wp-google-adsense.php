@@ -10,7 +10,7 @@ if (is_admin()) {
       var $isPro, $plgName, $plgDir, $plgURL, $options;
       var $ezTran, $slug, $domain;
 
-      function GoogleAdSense() { //constructor
+      function __construct() { //constructor
         $this->plgDir = __DIR__;
         $this->plgURL = plugin_dir_url(__FILE__);
         $this->isPro = file_exists("{$this->plgDir}/admin/options-advanced.php");
@@ -19,6 +19,17 @@ if (is_admin()) {
         require_once 'EzTran.php';
         $this->ezTran = new EzTran(__FILE__, $this->plgName, $this->slug);
         $this->ezTran->setLang();
+      }
+
+      function __destruct() {
+
+      }
+
+      function GoogleAdSense() {
+        if (version_compare(PHP_VERSION, "5.0.0", "<")) {
+          $this->__construct();
+          register_shutdown_function(array($this, "__destruct"));
+        }
       }
 
       function getQuery($atts) {
@@ -50,6 +61,7 @@ if (is_admin()) {
         $migrator = new Migrator();
         $migrator->migrate();
         EZWP::putGenOption('last_iframe_src', 'index.php');
+        EZWP::putGenOption('editing', 'Default');
         return;
       }
 

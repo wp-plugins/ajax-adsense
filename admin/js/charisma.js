@@ -126,11 +126,6 @@ function docReady() {
     $target.slideToggle();
   });
 
-  $('.btn-setting').click(function (e) {
-    e.preventDefault();
-    $('#myModal').modal('show');
-  });
-
   // Help button to use modal to show message
   $('body').on('click', ".btn-help", function (e) {
     e.preventDefault();

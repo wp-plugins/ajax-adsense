@@ -24,5 +24,5 @@ if (isset($_REQUEST['migrate'])) {
   $migrator->migrate(true);
 }
 closeBox();
-include('promo.php');
-require('footer.php');
+require 'promo.php';
+require 'footer.php';

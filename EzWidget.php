@@ -9,7 +9,7 @@ abstract class EzWidget extends WP_Widget {
     $this->widgetName = $widgetName;
     $widget_ops = array('classname' => $className,
         'description' => sprintf(__("Show %s ad block in your sidebar as a widget.", 'easy-ads'), $widgetName));
-    parent::WP_Widget($className, $widgetName, $widget_ops);
+    parent::__construct($className, $widgetName, $widget_ops);
   }
 
   function __destruct() {

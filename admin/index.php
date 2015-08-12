@@ -1,4 +1,4 @@
-<?php require('header.php'); ?>
+<?php require 'header.php'; ?>
 <div>
   <ul class="breadcrumb">
     <li>
@@ -32,8 +32,8 @@ closeBox();
   ?>
 </div>
 <?php
-include('promo.php');
+require 'promo.php';
 if (file_exists('demo-box.php')) {
   include 'demo-box.php';
 }
-require('footer.php');
+require 'footer.php';

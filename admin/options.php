@@ -1,4 +1,4 @@
-<?php require('header.php'); ?>
+<?php require 'header.php'; ?>
 <div>
   <ul class="breadcrumb">
     <li>
@@ -36,4 +36,4 @@ else {
 <?php
 closeBox();
 include 'promo.php';
-require('footer.php');
+require 'footer.php';
