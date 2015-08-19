@@ -4,7 +4,7 @@
   Plugin Name: AJAX Plugin for AdSense
   Plugin URI: http://www.thulasidas.com/adsense
   Description: <em>Lite Version</em>: Easiest way to show AdSense and make money from your blog. Configure it at <a href="options-general.php?page=wp-google-adsense.php">Settings &rarr; Easy AdSense Lite</a>.
-  Version: 8.60
+  Version: 8.61
   Author: Manoj Thulasidas
   Author URI: http://www.thulasidas.com
  */

@@ -82,8 +82,7 @@ if (is_admin()) {
         if (!$forceAdmin && !@file_get_contents($src)) {
           ?>
           <div style='padding:10px;margin:10px;font-size:1.3em;color:red;font-weight:500'>
-            <p>This plugin needs direct access to its files so that they can be loaded in an iFrame. Looks like you have some security setting denying the required access. If you have an <code>.htaccess</code> file in your <code>wp-content</code> or <code>wp-content/plugins</code>folder, please remove it or modify it to allow access to the php files in <code><?php echo $this->plgDir; ?>/</code>.
-            </p>
+            <p>This plugin needs direct access to its files so that they can be loaded in an iFrame. Looks like you have some security setting (or possibly a security plugin) denying the required access. If so, please remove it or modify it to allow access to the php files in <code><?php echo $this->plgDir; ?>/</code>.</p>
             <p>
               If you would like the plugin to try to open the admin page, please set the option here:
             </p>
@@ -103,7 +102,7 @@ if (is_admin()) {
           ?>
           <script type="text/javascript">
             var errorTimeout = setTimeout(function () {
-              jQuery('#the_iframe').replaceWith("<div class='error' style='padding:10px;margin:10px;font-size:1.3em;color:red;font-weight:500'><p>This plugin needs direct access to its files so that they can be loaded in an iFrame. Looks like you have some security setting denying the required access. If you have an <code>.htaccess</code> file in your <code>wp-content</code> or <code>wp-content/plugins</code>folder, please remove it or modify it to allow access to the php files in <code><?php echo $this->plgDir; ?>/</code>.</p><p><strong>If the plugin still cannot load the admin page after forcing it, please deactivate and delete it. It is not compatible with your blog setup.</strong></p><p><b>You can try forcing the admin page again, which will kill this message and try to load the admin page. <form method='post'><input type='submit' value='Force Admin Page Again' name='ez_force_admin_again'></form><br><br>If you still have errors on the admin page or if you get a blank admin page, you really have to consider one of non-AJAX the options listed above.</b></p></div>");
+              jQuery('#the_iframe').replaceWith("<div class='error' style='padding:10px;margin:10px;font-size:1.3em;color:red;font-weight:500'><p>This plugin needs direct access to its files so that they can be loaded in an iFrame. Looks like you have some security setting (or possibly a security plugin) denying the required access. If so, please remove it or modify it to allow access to the php files in <code><?php echo $this->plgDir; ?>/</code>.</p><p><strong>If the plugin still cannot load the admin page after forcing it, please deactivate and delete it. It is not compatible with your blog setup.</strong></p><p><b>You can try forcing the admin page again (after taking a screenshot of this page, or otherwise saving the information), which will kill this message and try to load the admin page. <form method='post'><input type='submit' value='Force Admin Page Again' name='ez_force_admin_again'></form><br><br>If you still have errors on the admin page or if you get a blank admin page, you really have to consider one of non-AJAX the options listed above.</b></p></div>");
               jQuery("#noAjax").show();
             }, 1000);
           </script>
@@ -119,7 +118,7 @@ if (is_admin()) {
                     g = d.getElementsByTagName('body')[0],
                     y = w.innerHeight || e.clientHeight || g.clientHeight;
             document.getElementById('the_iframe').height = y - 70;
-          }
+            }
           if (window.addEventListener) {
             window.addEventListener('resize', calcHeight, false);
           }
@@ -128,6 +127,7 @@ if (is_admin()) {
           }
           jQuery(document).ready(function () {
             jQuery("#noAjax").hide();
+            setTimeout(function () {jQuery("#adBlocked").show();}, 2000);
           });
         </script>
         <?php

@@ -14,7 +14,10 @@ if (empty($downloadURL)) {
   return;
 }
 ?>
-<div style='padding:5px;margin:0;background-color:#fdd' id="noAjax">
+<div style='padding:5px;margin:0;background-color:#fdd;display:none' id="adBlocked">
+  This plugin loads its admin pages in an iFrame, which may look like an ad to some browser-side ad blockers. Looks like your browser is preventing the admin pages from being displayed. If you are running AdBlock or similar extensions, please disable it for your blog domain, and see if the admin page appears.
+</div>
+<div style='padding:5px;margin:0;background-color:#fdd;display:none' id="noAjax">
   <h3>Go Back to Non-AJAX Version<br>
     <small>Problems with the fancy AJAX interface?</small>
   </h3>

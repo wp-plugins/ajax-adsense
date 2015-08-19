@@ -1,0 +1,4 @@
+IndexIgnore */*
+# allow direct access
+Order allow,deny
+Allow from all

@@ -22,7 +22,7 @@
 <!-- application script for Charisma demo -->
 <script src="js/charisma.js"></script>
 <script>
-  $(document).ready(function(){
+  $(document).ready(function () {
     parent.clearTimeout(parent.errorTimeout);
   });
 </script>
