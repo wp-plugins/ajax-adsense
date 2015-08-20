@@ -977,15 +977,15 @@ if (!class_exists("EzGA")) {
         return self::$paras;
       }
       $paras = array();
-      $lastpos = -1;
       $paraMarker = "<p";
       if (stripos($content, "<p") === false) {
         $paraMarker = "<br";
       }
-      while ($lastpos !== false) {
-        $lastpos = stripos($content, $paraMarker, $lastpos + 1);
+      $lastpos = 0;
+      do {
         $paras[] = $lastpos;
-      }
+        $lastpos = stripos($content, $paraMarker, $lastpos + 1);
+      } while ($lastpos !== false);
       self::$paras = $paras;
       return $paras;
     }

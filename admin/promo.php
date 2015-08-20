@@ -15,10 +15,10 @@ if ($plgName == 'Google AdSense Ultra') {
 else if (EzGA::isPro()) {
   ?>
   <div class="col-md-3 col-sm-3 col-xs-6 goPro">
-    <a data-toggle="tooltip" title="Start your own ad server for only $20.95. Instant download. Fully compatible with Easy AdSense and AdSense Now! Serve and track ads to multiple blogs and websites." class="well top-block goPro" href="http://buy.thulasidas.com/ads-ez" data-product='ads-ez'>
+    <a data-toggle="tooltip" title="Start your own ad server for only $15.95. Instant download. Fully compatible with Easy AdSense and AdSense Now! Serve and track ads to multiple blogs and websites." class="well top-block goPro" href="http://buy.thulasidas.com/ads-ez" data-product='ads-ez'>
       <i class="glyphicon glyphicon-shopping-cart red center-text"></i>
       <div>Get Ads EZ Pro &nbsp;&nbsp;<span class='label label-info moreInfo'>More Info</span></div>
-      <div>$20.95. Instant Download</div>
+      <div>$15.95. Instant Download</div>
     </a>
   </div>
   <?php
