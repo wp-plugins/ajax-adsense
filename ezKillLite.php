@@ -36,13 +36,6 @@ if (!class_exists('EzKillLite')) {
       $this->killer = $killer;
     }
 
-    function EzKillLite($lite, $pro, $killer) {
-      if (version_compare(PHP_VERSION, "5.0.0", "<")) {
-        $this->__construct($lite, $pro, $killer);
-        register_shutdown_function(array($this, "__destruct"));
-      }
-    }
-
     function init() {
       include_once ABSPATH . 'wp-admin/includes/plugin.php';
       deactivate_plugins($this->lite);

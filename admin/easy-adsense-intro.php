@@ -8,7 +8,7 @@
 </h2>
 <p><em>Easy AdSense</em> provides a very easy way to generate revenue from your blog using Google AdSense. With its full set of features, this Ads EZ plugin is perhaps the first plugin to give you a complete solution for everything AdSense-related.</p>
 
-<p><strong>Easy AdSense (AKA Easy Plugin for AdSense)</strong>: The most popular AdSense plugin for WordPress, Easy AdSense lets you place up to three ads on your posts and pages, with independent ad codes. In addtion, you can add widgets to your side bar with ads, <a href='https://support.google.com/adsense/answer/15817' target='_blank' class='popup'>link units</a> or <a href='https://support.google.com/adsense/answer/160530' target='_blank'class='popup'>search boxes</a>, all generating revenue for you.</p>
+<p><strong>Easy AdSense (AKA Easy Plugin for AdSense)</strong>: The most popular AdSense plugin for WordPress, Easy AdSense lets you place up to three ads on your posts and pages, with independent ad codes. In addtion, you can add widgets to your side bar with ads, <a href='https://support.google.com/adsense/answer/15817' target='_blank' class='popup'>link units</a> or <a href='https://support.google.com/adsense/answer/160530' target='_blank' class='popup'>search boxes</a>, all generating revenue for you.</p>
 
 <p>
   <a class="btn btn-primary btn-help" data-toggle='tooltip' title="<p>View plugin features.<br>What can this plugin do?</p>" data-content="<p>Easy Plugin for AdSense provides a very easy way to generate revenue from your blog using Google AdSense. With its full set of features, Easy Plugin for AdSense is perhaps the first plugin to give you a complete solution for everything AdSense-related.</p><ol>

@@ -28,17 +28,6 @@ else {
       }
     }
 
-    function __destruct() {
-
-    }
-
-    function Updater($slug) {
-      if (version_compare(PHP_VERSION, "5.0.0", "<")) {
-        $this->__construct($slug);
-        register_shutdown_function(array($this, "__destruct"));
-      }
-    }
-
     function getLocalVersion() {
       if ($this->localVersion < 0) {
         $readme_file = "../readme.txt";

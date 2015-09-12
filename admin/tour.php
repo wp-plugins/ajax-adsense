@@ -33,7 +33,7 @@ $isUltra = $plgMode == 'google-adsense-ultra';
       <?php
     }
     ?>
-    <li>Go to the <a href='<?php echo $plgSlug; ?>-admin.php'>admin page</a></strong> and enter your ad code and other details.</li>
+    <li>Go to the <a href='<?php echo $plgSlug; ?>-admin.php'>admin page</a> and enter your ad code and other details.</li>
     <li>If you have the <strong><a href="#" class='goPro' data-product='<?php echo $plgSlug; ?>'>Pro version</a></strong> of <?php echo $plgName; ?>, set up the <a href='pro.php'>Pro features</a>.</li>
     <li>Take this <strong><a class="restart" href="#">tour</a></strong> any time you would like to go through the application features again.</li>
   </ul>

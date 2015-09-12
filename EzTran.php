@@ -32,13 +32,6 @@ if (!class_exists("PO")) {
       $this->keyVal = self::MINMATCH;
     }
 
-    function PO($id, $str) {
-      if (version_compare(PHP_VERSION, "5.0.0", "<")) {
-        $this->__construct($id, $str);
-        register_shutdown_function(array($this, "__destruct"));
-      }
-    }
-
     // Returns a properly escaped string
     static function decorate($str, $esc) {
       if (!get_magic_quotes_gpc()) {
@@ -235,13 +228,6 @@ if (!class_exists("EzTran")) {
           $this->status .= '<div class="updated">Pot file: ' . $file . ' was saved.</div> ';
           exit(0);
         }
-      }
-    }
-
-    function EzTran($plgFile, $plgName = '', $domain = '') {
-      if (version_compare(PHP_VERSION, "5.0.0", "<")) {
-        $this->__construct($plgFile, $plgName, $domain);
-        register_shutdown_function(array($this, "__destruct"));
       }
     }
 

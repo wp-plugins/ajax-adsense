@@ -233,6 +233,7 @@ EOF;
                   ?>
                   <li id="options"><a href="options.php"><i class="glyphicon glyphicon-cog"></i><span> Options</span></a></li>
                   <li id="i18n"><a href="i18n.php"><i class="glyphicon glyphicon-globe"></i><span> Languages</span></a></li>
+                </ul>
               </div>
             </div>
           </div>
@@ -275,5 +276,3 @@ EOF;
           http_response_code(200);
           echo $header;
 
-          EZWP::putGenOption('last_iframe_src', basename($_SERVER["PHP_SELF"]));
-          

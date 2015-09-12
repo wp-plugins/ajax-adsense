@@ -50,22 +50,7 @@ if (!class_exists("EzGA")) {
     }
 
     static function isLoggedIn() {
-      if (!defined('WP_USE_THEMES')) {
-        define('WP_USE_THEMES', false);
-      }
-      if (!defined('WP_INSTALLING')) {
-        define('WP_INSTALLING', true);
-      }
-      global $wpdb; // used within $wpHeader later for multisite. Do not remove!
       $isLoggedIn = false;
-      // check from admin and ajax
-      foreach (array("../../../..", "../../../../..") as $dir) {
-        $wpHeader = "$dir/wp-blog-header.php";
-        if (@file_exists($wpHeader)) {
-          require_once $wpHeader;
-          break;
-        }
-      }
       if (function_exists('current_user_can')) {
         if (current_user_can('activate_plugins')) {
           $isLoggedIn = true;
@@ -777,7 +762,7 @@ if (!class_exists("EzGA")) {
 
     static function showService() {
       $select = rand(0, 4);
-      echo "<div class='center-block' style='margin-left:10px;'><a href='http://www.thulasidas.com/professional-php-services/' target='_blank' class='popup-long' title='Professional Services' data-content='The author of this plugin may be able to help you with your WordPress or plugin customization needs and other PHP related development. Find a plugin that almost, but not quite, does what you are looking for? Need any other professional PHP/jQuery dev services? Click here!' data-toggle='popover' data-trigger='hover' data-placement='left'><img src='img/svcs/300x250-0$select.jpg' border='0' alt='Professional Services from the Plugin Author' /></a></div><div class='clearfix'></div>";
+      echo "<div class='center-block' style='margin-left:10px;'><a href='http://www.thulasidas.com/professional-php-services/' target='_blank' class='popup-long' title='Professional Services' data-content='The author of this plugin may be able to help you with your WordPress or plugin customization needs and other PHP related development. Find a plugin that almost, but not quite, does what you are looking for? Need any other professional PHP/jQuery dev services? Click here!' data-toggle='popover' data-trigger='hover' data-placement='left'><img src='img/svcs/300x250-0$select.jpg' style='border:0' alt='Professional Services from the Plugin Author' /></a></div><div class='clearfix'></div>";
     }
 
     // Frontend functions

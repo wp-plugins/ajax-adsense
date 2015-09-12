@@ -12,17 +12,6 @@ abstract class EzWidget extends WP_Widget {
     parent::__construct($className, $widgetName, $widget_ops);
   }
 
-  function __destruct() {
-
-  }
-
-  function EzWidget($name = 'EzWidget', $provider = '') {
-    if (version_compare(PHP_VERSION, "5.0.0", "<")) {
-      $this->__construct($name, $provider);
-      register_shutdown_function(array($this, "__destruct"));
-    }
-  }
-
   abstract function getAdText();
 
   abstract function getTitle();

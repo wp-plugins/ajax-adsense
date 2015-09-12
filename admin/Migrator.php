@@ -9,17 +9,6 @@ class Migrator {
     $this->table = $wpdb->prefix . "ez_adsense_options";
   }
 
-  function __destruct() {
-
-  }
-
-  function Migrator() {
-    if (version_compare(PHP_VERSION, "5.0.0", "<")) {
-      $this->__construct();
-      register_shutdown_function(array($this, "__destruct"));
-    }
-  }
-
   function getAttr($obj, $attr) {
     $ret = '';
     $matches = array();

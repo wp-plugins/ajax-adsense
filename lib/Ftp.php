@@ -60,19 +60,6 @@ if (!class_exists('Ftp')) {
       $this->isReady = true;
     }
 
-    function __destruct() {
-      if ($this->_connId) {
-        ftp_close($this->_connId);
-      }
-    }
-
-    function Ftp() {
-      if (version_compare(PHP_VERSION, "5.0.0", "<")) {
-        $this->__construct();
-        register_shutdown_function(array($this, "__destruct"));
-      }
-    }
-
     function guessDir() {
       $dir0 = __DIR__;
       $ds = DIRECTORY_SEPARATOR;

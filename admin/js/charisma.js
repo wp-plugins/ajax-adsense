@@ -271,11 +271,22 @@ function docReady() {
 
   if (inIframe()) {
     $("#standAloneMode").show();
-    $('body').find('a').not("#standAloneMode, .popup").each(function () {
-      var href = $(this).attr('href');
-      if (href) {
-        href += (href.match(/\?/) ? '&' : '?') + 'inframe';
-        $(this).attr('href', href);
+    $('body').find('a').not("#standAloneMode, #shop, .popup").each(function () {
+      var longHref = this.href;
+      var root = location.protocol + '//' + location.host;
+      if (longHref.indexOf(root) >= 0) { // internal link
+        var parentHref = parent.document.location.href
+                .replace(/[?&]inframe/, '')
+                .replace(/[?&]target=.*/, '');
+        var shortHref = $(this).attr('href');
+        if (!shortHref) {
+          shortHref = parent.document.location.href;
+        }
+        else {
+          shortHref = parentHref + (parentHref.match(/\?/) ? '&' : '?') + 'target=' + shortHref;
+        }
+        $(this).attr('href', shortHref);
+        this.target = '_parent';
       }
     });
   }
@@ -302,6 +313,17 @@ function isInWP() {
 
 function inIframe() {
   try {
+    var hash;
+    var q = document.URL.split('?')[1];
+    if (q != undefined) {
+      q = q.split('&');
+      for (var i = 0; i < q.length; i++) {
+        hash = q[i].split('=');
+        if (hash[0] === 'inframe') {
+          return true;
+        }
+      }
+    }
     return window.self !== window.top;
   } catch (e) {
     return true;

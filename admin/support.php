@@ -24,7 +24,19 @@
     </table></div>';
     ?>
     <li>Please check the carefully prepared <a href="http://www.thulasidas.com/plugins/<?php echo $plgSlug; ?>#faq" class="popup-long" title='Your question or issue may be already answered or resolved in the FAQ' data-toggle='tooltip'> Plugin FAQ</a> for answers.</li>
-    <li>For the lite version, you may be able to get support from the <a href='https://wordpress.org/support/plugin/<?php echo $plgSlug; ?>-lite' class='popup' title='WordPress forums have community support for this plugin' data-toggle='tooltip'>WordPress support forum</a>.</li>
+    <?php
+    if (EzGA::$isPro) {
+      ?>
+      <li>The Pro version comes with a short <a href='http://support.thulasidas.com/open.php' class='popup btn-xs btn-success' title='Open a support ticket if you have trouble with your Pro version. It is free during the download link expiry time.' data-toggle='tooltip'>Free Support</a>.</li>
+      <?php
+    }
+    else {
+      ?>
+      <li>For the lite version, you may be able to get support from the <a href='https://wordpress.org/support/plugin/<?php echo $plgSlug; ?>-lite' class='popup' title='WordPress forums have community support for this plugin' data-toggle='tooltip'>WordPress support forum</a>.</li>
+      <li class="text-success bg-success">Visit the <a href='http://buy.thulasidas.com/update.php' class='popup btn-xs btn-success' title='If you purchased the Pro version of this plugin, but did not get an automated email or a download page, please click here to find it.' data-toggle='tooltip'>Product Delivery Portal</a> to download the Pro version you have purchased.</li>
+      <?php
+    }
+    ?>
     <li>For preferential support and free updates, you can purchase a <a href='http://buy.thulasidas.com/support' class='popup btn-xs btn-info' title='Support contract costs only $4.95 a month, and you can cancel anytime. Free updates upon request, and support for all the products from the author.' data-toggle='tooltip'>Support Contract</a>.</li>
     <li>For one-off support issues, you can raise a one-time paid <a href='http://buy.thulasidas.com/ezsupport' class='popup btn-xs btn-primary' title='Support ticket costs $0.95 and lasts for 72 hours' data-toggle='tooltip'>Support Ticket</a> for prompt support.</li>
     <li>Please turn on <a href='#' id="verbose" class='btn-xs btn-warning' title='Click to check the status of Dignostic Comments in your post HTML. Do not leave the diagnostic comments on unless needed for troubleshooting. It increases the bandwindth usage, and gives out some information about your filesystem.' data-toggle='tooltip'>Diagnostic Comments</a> and include a link to your blog URL when you contact the plugin author.</li>
