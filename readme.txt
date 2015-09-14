@@ -4,7 +4,7 @@ Donate link: http://buy.thulasidas.com/easy-adsense
 Tags: adsense, google adsense, ads, advertising, easy adsense, google, adsense plugin
 Requires at least: 2.6
 Tested up to: 4.3
-Stable tag: 8.72
+Stable tag: 8.73
 License: GPL2 or later
 
 Easy AdSense manages all aspects of AdSense: insert ads into posts and sidebar, and add a Google Search box. Easiest and most complete AdSense Plugin!
@@ -56,7 +56,7 @@ AJAX Plugin for AdSense is the freely distributed version of a premium plugin. T
 
 == Upgrade Notice ==
 
-Minor refactoring changes.
+Reinstating the option to force the admin page loading, moving to a less colorful default theme.
 
 == Screenshots ==
 
@@ -177,6 +177,7 @@ A big "Thank You" to all my translators. Easy AdSense V2.6+ sports an *Easy Tran
 
 == Change Log ==
 
+* V8.73: Reinstating the option to force the admin page loading, moving to a less colorful default theme. [Sep 14, 2015]
 * V8.72: Minor refactoring changes. [Sep 12, 2015]
 * V8.71: Adding the missing EzPlugin.php.[Sep 9, 2015]
 * V8.70: Removing WP core file loading. [Sep 4, 2015]

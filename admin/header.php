@@ -111,7 +111,7 @@ function getHeader() {
     $themeCSS = "css/bootstrap-" . strtolower(EzGA::$options['eztheme']) . ".min.css";
   }
   else {
-    $themeCSS = "css/bootstrap-cerulean.min.css";
+    $themeCSS = "css/bootstrap-default.min.css";
   }
   ?>
   <!DOCTYPE html>
@@ -156,6 +156,9 @@ function getHeader() {
     </head>
 
     <body>
+      <script>
+        parent.clearTimeout(parent.errorTimeout);
+      </script>
       <!-- topbar starts -->
       <div class="navbar navbar-default" role="navigation">
 
@@ -164,7 +167,7 @@ function getHeader() {
             <span><?php echo $plgName; ?></span></a>
           <div class="btn-group pull-right">
             <?php
-            $standaloneURL = plugins_url('index.php', __FILE__);
+            $standaloneURL = site_url() . "/ezadsense-ep/admin/index.php";
             ?>
             <a id="standAloneMode" href="<?php echo $standaloneURL; ?>" target="_blank" data-content="Open <?php echo $plgName; ?> admin apge in a new window independent of WordPress admin interface. The standalone mode still uses WP authentication, and cannot be accessed unless logged in." data-toggle="popover" data-trigger="hover" data-placement="left"  title='Standalone Admin Screen'><span class="btn btn-info"><i class="glyphicon glyphicon-resize-full"></i> Standalone Mode</span></a>
             <a id="update" href="update.php" data-content="If you would like to check for regular updates, or install a purchased module or Pro upgrade, visit the Updates page." data-toggle="popover" data-trigger="hover" data-placement="left" title='Updates Page'><span class="btn btn-info"  ><i class="fa fa-cog fa-spin"></i> Updates

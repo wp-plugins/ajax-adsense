@@ -21,10 +21,5 @@
 <script src="js/bootbox.min.js"></script>
 <!-- application script for Charisma demo -->
 <script src="js/charisma.js"></script>
-<script>
-  $(document).ready(function () {
-    parent.clearTimeout(parent.errorTimeout);
-  });
-</script>
 </body>
 </html>
