@@ -107,7 +107,7 @@ function getHeader() {
   $plgModeName = EzGA::$pluginModes[$plgSlug];
   $isPro = EzGA::$isPro;
   $plgPrice = EzGA::$plgPrice;
-  if (!empty(EzGA::$options['eztheme'])) {
+  if ($isPro && !empty(EzGA::$options['eztheme'])) {
     $themeCSS = "css/bootstrap-" . strtolower(EzGA::$options['eztheme']) . ".min.css";
   }
   else {

@@ -3,7 +3,7 @@ if (!class_exists("EzPlugin")) {
 
   class EzPlugin {
 
-    var $name, $key, $slogan;
+    var $name, $key, $slogan, $file, $class;
     var $adminLogo, $mainLogo;
     var $isPro, $strPro, $plgDir, $plgURL;
     var $css = array();
@@ -11,6 +11,7 @@ if (!class_exists("EzPlugin")) {
 
     function __construct($file) { //constructor
       if (defined('ABSPATH')) {
+        $this->file = $file;
         $this->plgDir = dirname($file);
         $this->plgURL = plugin_dir_url($file);
         $this->siteUrl = site_url();
@@ -130,10 +131,25 @@ RewriteRule . {$this->wpRoot}index.php [L]
       else {
         ?>
         <div class='error' style='padding:10px;margin:10px;color:#a00;font-weight:500;background-color:#fee;display:none' id="adBlocked">
-          <strong>AdBlock</strong>: This plugin loads its admin pages in an iFrame, which may look like an ad to some browser-side ad blockers. If you are running AdBlock or similar extensions on your browser, please disable it for your blog domain so that the admin page is not blocked. Looks like your browser is preventing the admin pages from being displayed.
+          <p><strong>AdBlock</strong>: This plugin loads its admin pages in an iFrame, which may look like an ad to some browser-side ad blockers. If you are running AdBlock or similar extensions on your browser, please disable it for your blog domain so that the admin page is not blocked. Looks like your browser is preventing the admin pages from being displayed.</p>
+          <p>
+            If you think this message is in error, and would like the plugin to try to open the admin page any way, please click the button below:
+          </p>
+          <form method="post">
+            <input type="submit" value="Force Admin Page" name="ez_force_admin">
+          </form>
+          <p>
+            <strong>
+              Note that if the plugin still cannot load the admin page after forcing it, you may see a blank or error page here upon reload. If that happens, please deactivate and delete the plugin. It is not compatible with your blog setup.
+            </strong>
+          </p>
         </div>
         <?php
       }
+      if (!empty($_POST['ez_force_admin'])) {
+        update_option('ez_force_admin', true);
+      }
+      $forceAdmin = get_option('ez_force_admin');
       if (!empty($_REQUEST['target'])) {
         $src = "{$this->endPoint}/admin/{$_REQUEST['target']}";
       }
@@ -161,10 +177,16 @@ RewriteRule . {$this->wpRoot}index.php [L]
           window.attachEvent('onresize', calcHeight);
         }
         jQuery(document).ready(function () {
-          errorTimeout = setTimeout(function () {
-            jQuery("#the_iframe").fadeOut();
-            jQuery("#adBlocked, #permalinks").fadeIn();
-          }, 8000);
+      <?php
+      if (empty($forceAdmin)) {
+        ?>
+            errorTimeout = setTimeout(function () {
+              jQuery("#the_iframe").fadeOut();
+              jQuery("#adBlocked, #permalinks").fadeIn();
+            }, 8000);
+        <?php
+      }
+      ?>
           jQuery("#loading").delay(10000).fadeOut();
         });
       </script>
@@ -199,6 +221,35 @@ RewriteRule . {$this->wpRoot}index.php [L]
         }
         exit();
       }
+      else {
+        setcookie('ez-last-request', $request, time() + 30);
+        $url = "$this->siteUrl$this->keyEp/admin/index.php";
+        header("location: $url");
+        exit();
+      }
+    }
+
+    function pluginActionLinks($links, $file) {
+      if ($file == plugin_basename($this->file)) {
+        $settings_link = "<a href='options-general.php?page="
+                . basename($this->file)
+                . "'>Settings</a>";
+        array_unshift($links, $settings_link);
+      }
+      return $links;
+    }
+
+    function adminMenu() {
+      $mName = "$this->name $this->strPro";
+      add_options_page($mName, $mName, 'activate_plugins', basename($this->file), array($this, 'printAdminPage'));
+    }
+
+    function init() {
+      add_action('parse_request', array($this, 'parseRequest'));
+      add_action('admin_menu', array($this, 'adminMenu'));
+      add_filter('plugin_action_links', array($this, 'pluginActionLinks'), -10, 2);
+      register_activation_hook($this->file, array($this->class, 'install'));
+      register_deactivation_hook($this->file, array($this->class, 'uninstall'));
     }
 
   }
