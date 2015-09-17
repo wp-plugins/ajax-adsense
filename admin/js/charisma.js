@@ -1,5 +1,11 @@
 $(document).ready(function () {
 
+  var hasTouch = false;
+  window.addEventListener('touchstart', function setHasTouch() {
+    hasTouch = true;
+    window.removeEventListener('touchstart', setHasTouch);
+  }, false);
+
   var msie = navigator.userAgent.match(/msie/i);
   $.browser = {};
   $.browser.msie = {};
@@ -53,7 +59,9 @@ $(document).ready(function () {
     var $others = $li.siblings('.accordion').children('ul');
     $li.removeClass('active');
     $ul.slideDown(function () {
-      $ul.children('li:first').children('a:first')[0].click();
+      if (!hasTouch) {
+        $ul.children('li:first').children('a:first')[0].click();
+      }
     });
     $others.slideUp().parent().removeClass('active');
   });
@@ -101,6 +109,15 @@ function docReady() {
 
   //popover
   $('[data-toggle="popover"]').popover({html: true, container: 'body'});
+  $('body').on('click', function (e) {
+    $('[data-toggle="popover"]').each(function () {
+      //the 'is' for buttons that trigger popups
+      //the 'has' for icons within a button that triggers a popup
+      if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+        $(this).popover('hide');
+      }
+    });
+  });
 
   // lightbox
   // delegate calls to data-toggle="lightbox"

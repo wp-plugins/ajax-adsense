@@ -25,6 +25,7 @@ insertAlerts();
   <p>More help is available. Click the button below to show or hide it.</p>
   <a href='#' id="showAdvanced" class="btn-sm btn-primary">Show More Help</a>
   <a href='#' id="hideHelp" class="btn-sm btn-warning">Hide Top Panels</a>
+  <div class="clearfix visible-xs-block"></div>
   <?php
   closeCell();
   require 'box-optionset.php';
@@ -253,6 +254,7 @@ insertAlerts();
   closeBox();
   ?>
 </div>
+<div class="clearfix visible-xs-block"></div>
 <div id="right" class="col-md-6 col-sm-12">
   <?php
   openBox(__('AdSense Widget', 'easy-adsenser'));
@@ -352,6 +354,7 @@ insertAlerts();
   require 'box-more-info.php';
   ?>
 </div>
+<div class="clearfix visible-xs-block"></div>
 <script>
   var xeditHandler = 'ajax/options.php';
   var xparams = {};
