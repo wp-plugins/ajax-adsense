@@ -44,7 +44,8 @@ $(document).ready(function () {
 
   //highlight current / active link
   $('ul.main-menu li a').each(function (i, a) {
-    if (a.href === String(window.location)) {
+    if (a.href === window.location.href ||
+            a.href.replace(/\.php/, '.ezp') ===  window.location.href) {
       var dad = a.parentElement;
       $(dad).addClass('active');
       var grandpa = $(dad).parent().closest('li.dropdown');
@@ -56,17 +57,15 @@ $(document).ready(function () {
     e.preventDefault();
     var $ul = $(this).siblings('ul');
     var $li = $(this).parent();
-    var $others = $li.siblings('.accordion').children('ul');
     $li.removeClass('active');
     $ul.slideDown(function () {
       if (!hasTouch) {
         $ul.children('li:first').children('a:first')[0].click();
       }
     });
-    $others.slideUp().parent().removeClass('active');
   });
 
-  $('.accordion li.active:first').parents('ul').slideDown(0);
+  $('.accordion li.active:first').parents('ul').slideDown();
 
   //other things to do on document ready, separated for ajax calls
   docReady();
@@ -79,6 +78,142 @@ function ezPopUp(url, title, w, h) {
   var top = wTop + (window.innerHeight / 2) - (h / 2);
   window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
   return true;
+}
+
+function initXedit() {
+  // My x-edit interface, with checkbox defined.
+  // Assumes that the vars xeditHandler and xparams are defined in the global scope.
+  if (xeditInline) {
+    var xeditMode = 'inline';
+  }
+  else {
+    var xeditMode = 'popup';
+  }
+  if (typeof xeditHandler !== 'undefined') {
+    $('.xedit').editable({
+      url: xeditHandler,
+      mode: xeditMode,
+      validate: function (value) {
+        var validator = $(this).attr('data-validator');
+        if (validator) {
+          return validate[validator](value);
+        }
+      },
+      params: function (params) {
+        var validator = $(this).attr('data-validator');
+        if (validator) {
+          params.validator = validator;
+        }
+        var action = $(this).attr('data-action');
+        if (action) {
+          params.action = action;
+        }
+        $.each(xparams, function (key, value) {
+          params[key] = value;
+        });
+        return params;
+      }
+    });
+    var activeText, emptyText, cbWidth, cbSource;
+    if (wideCB) {
+      activeText = '<i class="glyphicon glyphicon-ok icon-white"></i> Active';
+      emptyText = 'Disabled';
+      cbWidth = 150;
+      cbSource = {'1': 'Active'};
+    }
+    else {
+      activeText = '<i class="glyphicon glyphicon-ok icon-white"></i> Yes';
+      emptyText = ' <i class="glyphicon glyphicon-remove icon-white"></i>&nbsp; No ';
+      cbWidth = 150;
+      cbSource = {'1': 'Yes'};
+    }
+    $('.xedit-checkbox').width(cbWidth).editable({
+      url: xeditHandler,
+      type: 'checklist',
+      source: cbSource,
+      emptytext: emptyText,
+      emptyclass: 'btn-danger',
+      success: function (response, newValue) {
+        if (typeof checkBoxChanged === 'function') {
+          checkBoxChanged(newValue);
+        }
+        if (newValue === "0" || newValue.length === 0 || newValue[0] === "0") {
+          $(this).removeClass('btn-success').addClass('btn-danger');
+        }
+        if (newValue === "1" || newValue[0] === "1") {
+          $(this).removeClass('btn-danger').addClass('btn-success');
+        }
+        $(this).parent('').hide().show(0); // to force redraw
+      },
+      display: function (value, sourceData) {
+        $(this).width(cbWidth);
+        if (value == 1) { // Needs to be autocasting ==, not ===
+          $(this).html(activeText);
+        }
+        else {
+          $(this).html(''); // Don't know why this works!
+        }
+      },
+      params: function (params) {
+        var action = $(this).attr('data-action');
+        if (action) {
+          params.action = action;
+        }
+        $.each(xparams, function (key, value) {
+          params[key] = value;
+        });
+        return params;
+      },
+      error: function (a) {
+        $("#alertErrorText").html(a.responseText);
+        $(".alert").show();
+      }
+    });
+  }
+  $('.xedit-new').editable({
+    url: 'ajax/success.php',
+    validate: function (value) {
+      var validator = $(this).attr('data-validator');
+      if (validator) {
+        return validate[validator](value);
+      }
+    },
+    params: function (params) {
+      var validator = $(this).attr('data-validator');
+      if (validator)
+        params.validator = validator;
+      return params;
+    }
+  });
+  $('.xedit-checkbox-new').editable('option', 'url', 'ajax/success.php');
+}
+
+function isInternalLink(link) {
+  var longHref = link.href;
+  var root = location.protocol + '//' + location.host;
+  return longHref.indexOf(root) >= 0;
+}
+
+function rewritePhpExt(url) {
+  if (url) {
+    return url.replace(/\.php(.*)/, '.ezp$1');
+  }
+  else {
+    return url;
+  }
+}
+
+function rewriteHref(i, link) {
+  if (isInternalLink(link)) {
+    var parentHref = parent.document.location.href
+            .replace(/[?&]inframe/, '')
+            .replace(/[?&]target=.*/, '');
+    var shortHref = parentHref + (parentHref.match(/\?/) ? '&' : '?') +
+            'target=' + rewritePhpExt($(link).attr('href'));
+    ;
+    $(link).attr('href', shortHref);
+    link.target = '_parent';
+  }
 }
 
 function docReady() {
@@ -143,7 +278,7 @@ function docReady() {
     $target.slideToggle();
   });
 
-  // Help button to use modal to show message
+  // Help button to use bootbox to show text
   $('body').on('click', ".btn-help", function (e) {
     e.preventDefault();
     var helpText = $(this).attr('data-help');
@@ -168,87 +303,21 @@ function docReady() {
     });
   });
 
-  // My x-edit interface, with checkbox defined.
-  // Assumes that the vars xeditHandler and xparams are defined in the global scope.
-  if (typeof xeditHandler !== 'undefined' && typeof xparams !== 'undefined') {
-    $('.xedit').editable({
-      url: xeditHandler,
-      validate: function (value) {
-        var validator = $(this).attr('data-validator');
-        if (validator) {
-          return validate[validator](value);
-        }
-      },
-      params: function (params) {
-        var validator = $(this).attr('data-validator');
-        if (validator)
-          params.validator = validator;
-        $.each(xparams, function (key, value) {
-          params[key] = value;
-        });
-        return params;
-      }
-    });
-    var activeText = '<i class="glyphicon glyphicon-ok icon-white"></i> Yes';
-    $('.xedit-checkbox').width(50).editable({
-      url: xeditHandler,
-      type: 'checklist',
-      source: {'1': 'Yes'},
-      emptytext: ' <i class="glyphicon glyphicon-remove icon-white"></i>&nbsp; No ',
-      emptyclass: 'btn-danger',
-      success: function (response, newValue) {
-        if (typeof checkBoxChanged === 'function') {
-          checkBoxChanged(newValue);
-        }
-        if (newValue === "0" || newValue[0] === "0") {
-          $(this).removeClass('btn-success').addClass('btn-danger');
-        }
-        if (newValue === "1" || newValue[0] === "1") {
-          $(this).removeClass('btn-danger').addClass('btn-success');
-        }
-      },
-      display: function (value, sourceData) {
-        if (value == 1) { // Needs to be autocasting ==, not ===
-          $(this).html(activeText);
-          $(this).width(50);
-        }
-        else {
-          $(this).html(''); // Don't know why this works!
-          $(this).width(50);
-        }
-      },
-      params: function (params) {
-        $.each(xparams, function (key, value) {
-          params[key] = value;
-        });
-        return params;
-      },
-      error: function (a) {
-        $("#alertErrorText").html(a.responseText);
-        $(".alert").show();
-      }
+  initXedit();
+
+  if (typeof $().colorpicker === 'function') {
+    $('.colorpicker').colorpicker();
+  }
+
+  if (typeof $().dataTable === 'function') {
+    $('.data-table').dataTable({"aaSorting": []});
+    $('.data-table-longer').dataTable({
+      pageLength: 20,
+      aaSorting: []
     });
   }
-  $('.xedit-new').editable({
-    url: 'ajax/success.php',
-    validate: function (value) {
-      var validator = $(this).attr('data-validator');
-      if (validator) {
-        return validate[validator](value);
-      }
-    },
-    params: function (params) {
-      var validator = $(this).attr('data-validator');
-      if (validator)
-        params.validator = validator;
-      return params;
-    }
-  });
-  $('.xedit-checkbox-new').editable('option', 'url', 'ajax/success.php');
 
-  $('.colorpicker').colorpicker();
-
-//Add Hover effect to menus
+  //Add Hover effect to menus
   $('ul.nav li.dropdown').hover(function () {
     $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn();
   }, function () {
@@ -259,7 +328,9 @@ function docReady() {
     e.preventDefault();
     var product = $(this).attr('data-product');
     if (!product) {
-      product = 'google-adsense';
+      if (typeof getProduct === 'function') {
+        product = getProduct();
+      }
     }
     var url = 'http://buy.thulasidas.com/' + product;
     var title = "Get the Pro version";
@@ -286,46 +357,53 @@ function docReady() {
     return ezPopUp(url, title, w, h);
   });
 
-  if (inIframe()) {
-    $("#standAloneMode").show();
-    $('body').find('a').not("#standAloneMode, #shop, .popup").each(function () {
-      var longHref = this.href;
-      var root = location.protocol + '//' + location.host;
-      if (longHref.indexOf(root) >= 0) { // internal link
-        var parentHref = parent.document.location.href
-                .replace(/[?&]inframe/, '')
-                .replace(/[?&]target=.*/, '');
-        var shortHref = $(this).attr('href');
-        if (!shortHref) {
-          shortHref = parent.document.location.href;
-        }
-        else {
-          shortHref = parentHref + (parentHref.match(/\?/) ? '&' : '?') + 'target=' + shortHref;
-        }
+  if (isInWP) {
+    if (inIframe()) {
+      $("#standAloneMode").show();
+      $('body').find('a').not("#standAloneMode, #shop, .popup, .endpoint")
+              .each(rewriteHref);
+      $("#standAloneMode, #shop").each(function () {
+        var shortHref = rewritePhpExt($(this).attr('href'));
         $(this).attr('href', shortHref);
-        this.target = '_parent';
-      }
+      });
+    }
+    else {
+      $("#standAloneMode").fadeOut();
+      $('body').find('a').not(".popup, .endpoint").each(function () {
+        if (isInternalLink(this)) {
+          var shortHref = rewritePhpExt($(this).attr('href'));
+          $(this).attr('href', shortHref);
+        }
+      });
+    }
+    $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
+      options.url = rewritePhpExt(options.url);
     });
   }
   else {
     $("#standAloneMode").fadeOut();
   }
-
 }
 
-function isInWP() {
-  var hash, inWP = false;
-  var q = document.URL.split('?')[1];
-  if (q != undefined) {
-    q = q.split('&');
-    for (var i = 0; i < q.length; i++) {
-      hash = q[i].split('=');
-      if (hash[0] === 'wp') {
-        return true;
+if (xeditOpenNext) {
+  $('.xedit, .xedit-checkbox').on('hidden', function (e, reason) {
+    if (reason === 'save' || reason === 'nochange') {
+      var $next = $(this).closest('td').next().find('.xedit, .xedit-checkbox');
+      if (!$next.length) {
+        $next = $(this).closest('tr').next().find('td:first').find('.xedit, .xedit-checkbox');
+      }
+      if (!$next.length) {
+        $next = $(this).closest('tr').next().find('.xedit, .xedit-checkbox');
+      }
+      if (true) {
+        setTimeout(function () {
+          $next.editable('show');
+        }, 300);
+      } else {
+        $next.focus();
       }
     }
-  }
-  return false;
+  });
 }
 
 function inIframe() {
@@ -359,12 +437,23 @@ function flashMsg(msg, kind, noflash) {
   return $(id);
 }
 
+function hideMsg(kind) {
+  var id = "#alert" + kind + "Text";
+  $(id).html('');
+  $(id).parent().slideUp();
+  return $(id);
+}
+
 function flashError(error) {
   return flashMsg(error, 'Error');
 }
 
 function showError(error) {
   return flashMsg(error, 'Error', true);
+}
+
+function hideError() {
+  return hideMsg('Error');
 }
 
 function flashWarning(warning) {
@@ -375,6 +464,10 @@ function showWarning(warning) {
   return flashMsg(warning, 'Warning', true);
 }
 
+function hideWarning() {
+  return hideMsg('Warning');
+}
+
 function flashSuccess(message) {
   return flashMsg(message, 'Success');
 }
@@ -383,12 +476,20 @@ function showSuccess(message) {
   return flashMsg(message, 'Success', true);
 }
 
+function hideSuccess() {
+  return hideMsg('Success');
+}
+
 function flashInfo(message) {
   return flashMsg(message, 'Info');
 }
 
 function showInfo(message) {
   return flashMsg(message, 'Info', true);
+}
+
+function hideInfo() {
+  return hideMsg('Info');
 }
 
 $(".close").click(function () {

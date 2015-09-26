@@ -53,9 +53,61 @@ if (!class_exists("EzPlugin")) {
       return true;
     }
 
-    function mkHtaccess() {
-      $file = ABSPATH . ".htaccess";
-      $data = "
+    function getServerSoftware() {
+      $server = "unknown";
+      if (!empty($_SERVER['SERVER_SOFTWARE'])) {
+        $serverSoftware = strtolower($_SERVER['SERVER_SOFTWARE']);
+      }
+      else {
+        $serverSoftware = "";
+      }
+      if (strpos($serverSoftware, "apache") !== false) {
+        $server = "apache";
+      }
+      if (strpos($serverSoftware, "nginx") !== false) {
+        $server = "nginx";
+      }
+      if (strpos($serverSoftware, "microsoft") !== false) {
+        $server = "microsoft";
+      }
+      return $server;
+    }
+
+    function getNginxMsg() {
+      $data = 'location / {
+        try_files $uri $uri/ /index.php?q=$request_uri;
+}';
+      return "<p>You are running on <code>nginx</code>. You may have to edit your config file after enabling Permalinks. Please see <a href='https://codex.wordpress.org/Nginx' target='_blank' class='popup-long'>Nginx instructions</a>. In most cases, all you have to do is to add this to your <code>location</code> block:</p><pre>$data</pre>";
+    }
+
+    function getMSMsg() {
+      return "<p>You are running on a Microsoft server. Please enable and configure Permalinks. Here is <a href='http://www.iis.net/learn/extensions/url-rewrite-module/enabling-pretty-permalinks-in-wordpress' target='_blank' class='popup-long'>how to do it</a>.";
+    }
+
+    function getApacheMsg() {
+      return "<p>You are running on an Apache or a generic server. Please enable and configure Permalinks. Add the <a href='https://codex.wordpress.org/htaccess' target='_blank' class='popup-long'>standard WordPress directives</a> to your <code>.htaccess</code> file or equivalent.";
+    }
+
+    function checkPerma() {
+      $permaStructure = get_option('permalink_structure');
+      if (!empty($permaStructure)) {
+        return;
+      }
+      $server = $this->getServerSoftware();
+      $msg = "";
+      switch ($server) {
+        case "nginx":
+          return $this->getNginxMsg();
+        case "microsoft":
+          return $this->getMSMsg();
+        default:
+          $msg = "<p>Depending on your server, follow the steps below.</p>";
+          $msg .=  $this->getNginxMsg();
+          $msg .=  $this->getMSMsg();
+          $msg .=  $this->getApacheMsg();
+        case "apache":
+          $file = ABSPATH . ".htaccess";
+          $data = "
 # BEGIN WordPress: Inserted by $this->name
 <IfModule mod_rewrite.c>
 RewriteEngine On
@@ -67,33 +119,35 @@ RewriteRule . {$this->wpRoot}index.php [L]
 </IfModule>
 # END WordPress: Inserted by $this->name
 ";
-      if (file_exists($file)) {
-        // Dangerous to create
-        $currentData = file_get_contents($file);
-        if (!self::isEmptyHtaccess($currentData)) {
-          $currentData = htmlspecialchars($currentData);
-          $data = htmlspecialchars($data);
-          return "<p>You already have an <code>.htaccess</code> file (<code>$file</code>) with these contents:</p><pre>$currentData</pre><p>Please edit it and add the <a href='https://codex.wordpress.org/htaccess' target='_blank' class='popup-long'>standard WordPress directives</a>  (pointing all missing files to <code>index.php</code>). Here is what you need to add:</p><pre>$data</pre>";
-        }
-      }
-      // No htaccess or it is empty. Safe to create a default one.
-      $url = wp_nonce_url('plugin-install.php', 'plugin-install');
-      $creds = request_filesystem_credentials($url, '', false, false, ABSPATH);
-      if ($creds !== false) {
-        WP_Filesystem($creds);
-        global $wp_filesystem;
-        if (!empty($wp_filesystem)) {
-          $abspath = trailingslashit($wp_filesystem->abspath());
-          $file = "{$abspath}.htaccess";
-          if ($wp_filesystem->put_contents($file, "$currentData\n$data")) {
-            return "A default <code>.htaccess</code> has been created for you.";
+          if (file_exists($file)) {
+            // Dangerous to create
+            $currentData = file_get_contents($file);
+            if (!self::isEmptyHtaccess($currentData)) {
+              $currentData = htmlspecialchars($currentData);
+              $data = htmlspecialchars($data);
+              return "$msg<p>You already have an <code>.htaccess</code> file (<code>$file</code>) with these contents:</p><pre>$currentData</pre><p>Please edit it and add the <a href='https://codex.wordpress.org/htaccess' target='_blank' class='popup-long'>standard WordPress directives</a>  (pointing all missing files to <code>index.php</code>). Here is what you need to add:</p><pre>$data</pre>";
+            }
           }
-        }
-      }
-      else {
-        // Cannot create a new one.
-        $data = htmlspecialchars($data);
-        return "<p>You do not have an <code>.htaccess</code> file and it does not look like I can create one for you. Please create <code>$file</code> and add the <a href='https://codex.wordpress.org/htaccess' target='_blank' class='popup-long'>standard WordPress directives</a> (pointing all missing files to <code>index.php</code>). Here is what you need to add:</p><pre>$data</pre>";
+          // No htaccess or it is empty. Safe to create a default one.
+          $url = wp_nonce_url('plugin-install.php', 'plugin-install');
+          $creds = request_filesystem_credentials($url, '', false, false, ABSPATH);
+          if ($creds !== false) {
+            WP_Filesystem($creds);
+            global $wp_filesystem;
+            if (!empty($wp_filesystem)) {
+              $abspath = trailingslashit($wp_filesystem->abspath());
+              $file = "{$abspath}.htaccess";
+              if ($wp_filesystem->put_contents($file, "$currentData\n$data")) {
+                return "$msg<p>A default <code>.htaccess</code> has been created for you.</p>";
+              }
+            }
+          }
+          else {
+            // Cannot create a new one.
+            $data = htmlspecialchars($data);
+            return "$msg<p>You do not have an <code>.htaccess</code> file and it does not look like I can create one for you. Please create <code>$file</code> and add the <a href='https://codex.wordpress.org/htaccess' target='_blank' class='popup-long'>standard WordPress directives</a> (pointing all missing files to <code>index.php</code>). Here is what you need to add:</p><pre>$data</pre>";
+          }
+          break;
       }
     }
 
@@ -117,20 +171,39 @@ RewriteRule . {$this->wpRoot}index.php [L]
       ?>
       <div id="loading" class="updated"><h2><img src="<?php echo $this->plgURL; ?>/admin/img/loading.gif" alt="Loading">&emsp; Loading... Please wait!</h2></div>
       <?php
-      $permaStructure = get_option('permalink_structure');
-      if (empty($permaStructure)) {
-        $htaccessMsg = $this->mkHtaccess();
-        $permalink = admin_url('options-permalink.php');
+      $permaMsg = $this->checkPerma();
+      $permalink = admin_url('options-permalink.php');
+      if (!empty($permaMsg)) {
         ?>
         <div class='error' style='padding:10px;margin:10px;color:#a00;font-weight:500;background-color:#fee;display:none' id="permalinks">
-          <p><strong>Permalinks</strong> are not enabled on your blog, which this plugin needs. Please <a href='<?php echo $permalink; ?>'>enable a permalink structure</a> for your blog from <strong><a href='<?php echo $permalink; ?>'>Settings &rarr; Permalinks</a></strong>. Any structure (other than the ugly default structure using <code><?php echo site_url(); ?>/?p=123</code>) will do. Note that you may need to manually update your <code>.htaccess</code> file in certain installations.</p>
-          <?php echo $htaccessMsg; ?>
+          <p><strong>Permalinks</strong> are not enabled on your blog, which this plugin needs. Please <a href='<?php echo $permalink; ?>'>enable a permalink structure</a> for your blog from <strong><a href='<?php echo $permalink; ?>'>Settings &rarr; Permalinks</a></strong>. Any structure (other than the ugly default structure using <code><?php echo site_url(); ?>/?p=123</code>) will do.</p>
+          <?php echo $permaMsg; ?>
         </div>
         <?php
       }
       else {
         ?>
         <div class='error' style='padding:10px;margin:10px;color:#a00;font-weight:500;background-color:#fee;display:none' id="adBlocked">
+          <?php
+          $server = $this->getServerSoftware();
+          echo "<p><strong>Permalink Configuration</strong>:  <em>This step is <strong>not</strong> optional.</em> This plugin requires Permalinks to be enabled and configured. Looks like they are enabled, but not fully configured. In most cases, you just need to visit <a href='$permalink'>Settings &rarr; Permalinks</a> and hit the <strong>Save Changes</strong> button to configure them.</p>";
+          switch ($server) {
+            case "nginx":
+              echo $this->getNginxMsg();
+              break;
+            case "microsoft":
+              echo $this->getMSMsg();
+              break;
+            case "apache":
+              echo $this->getApacheMsg();
+              break;
+            default:
+              echo "<p>Depending on your server, follow the steps below.</p>";
+              echo $this->getNginxMsg();
+              echo $this->getMSMsg();
+              echo $this->getApacheMsg();
+          }
+          ?>
           <p><strong>AdBlock</strong>: This plugin loads its admin pages in an iFrame, which may look like an ad to some browser-side ad blockers. If you are running AdBlock or similar extensions on your browser, please disable it for your blog domain so that the admin page is not blocked. Looks like your browser is preventing the admin pages from being displayed.</p>
           <p>
             If you think this message is in error, and would like the plugin to try to open the admin page any way, please click the button below:
@@ -150,14 +223,16 @@ RewriteRule . {$this->wpRoot}index.php [L]
         update_option('ez_force_admin', true);
       }
       $forceAdmin = get_option('ez_force_admin');
+      $lastSrc = get_option("$this->key-last-src");
       if (!empty($_REQUEST['target'])) {
         $src = "{$this->endPoint}/admin/{$_REQUEST['target']}";
+        update_option("$this->key-last-src", $_REQUEST['target']);
       }
       else if (!empty($lastSrc)) {
         $src = "{$this->endPoint}/admin/$lastSrc";
       }
       else {
-        $src = "{$this->endPoint}/admin/index.php";
+        $src = "{$this->endPoint}/admin/index.ezp";
       }
       ?>
       <script>
@@ -202,13 +277,14 @@ RewriteRule . {$this->wpRoot}index.php [L]
       if (!empty($this->wpRoot)) {
         $request = str_replace($this->wpRoot, "", $_SERVER['REQUEST_URI']);
       }
-      $request = trim($request, DIRECTORY_SEPARATOR);
+      $request = trim($request, DIRECTORY_SEPARATOR . "\\/");
       if (strpos($request, $this->keyEp) !== 0) {
         return;
       }
       $request = preg_replace('/\?.*/', '', $request);
       $request = preg_replace("/$this->keyEp/", basename($this->plgDir), $request, 1);
       $target = WP_PLUGIN_DIR . "/" . $request;
+      $target = preg_replace("/\.ezp$/", ".php", $target, 1);
       if (file_exists($target)) {
         chdir(dirname($target));
         $ext = substr($target, -3);
@@ -223,7 +299,7 @@ RewriteRule . {$this->wpRoot}index.php [L]
       }
       else {
         setcookie('ez-last-request', $request, time() + 30);
-        $url = "$this->siteUrl$this->keyEp/admin/index.php";
+        $url = "$this->siteUrl$this->keyEp/admin/index.ezp";
         header("location: $url");
         exit();
       }

@@ -1,3 +1,12 @@
+var wideCB = false;
+var xeditOpenNext = true;
+var xeditInline = true;
+var isInWP = true;
+
+function getProduct() {
+  return "google-adsense-ultra";
+}
+
 $(document).ready(function () {
   $('.colorpicker').on('hidePicker', function (e) {
     var color = e.color.toHex().replace('#', "");
@@ -80,7 +89,7 @@ function suspendAds(action) {
   if (inIframe()) {
     data.inframe = true;
   }
-  $.ajax({url: 'ajax/options-suspend-ads.php',
+  $.ajax({url: 'ajax/options-suspend-ads.ezp',
     type: 'POST',
     data: data,
     success: function (a) {

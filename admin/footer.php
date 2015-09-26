@@ -11,7 +11,6 @@
 </div><!--/.fluid-container-->
 
 <!-- external javascript -->
-
 <script src="js/ez-admin.js"></script>
 <script src="js/bootstrap-colorpicker.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -19,7 +18,7 @@
 <script src="js/bootstrap-tour.min.js"></script>
 <script src="js/fileinput.min.js"></script>
 <script src="js/bootbox.min.js"></script>
-<!-- application script for Charisma demo -->
+<!-- application specific -->
 <script src="js/charisma.js"></script>
 </body>
 </html>

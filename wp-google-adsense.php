@@ -43,7 +43,7 @@ if (!class_exists("GoogleAdSense")) {
       return;
     }
 
-    static function install($dir, $mOptions) {
+    static function install($dir = '', $mOptions = '') {
       require_once 'admin/Migrator.php';
       $migrator = new Migrator();
       $migrator->migrate();
