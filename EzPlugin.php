@@ -107,15 +107,21 @@ if (!class_exists("EzPlugin")) {
           $msg .=  $this->getApacheMsg();
         case "apache":
           $file = ABSPATH . ".htaccess";
+          if (empty($this->wpRoot)) {
+            $wpRoot = "/";
+          }
+          else {
+            $wpRoot = $this->wpRoot;
+          }
           $data = "
 # BEGIN WordPress: Inserted by $this->name
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteBase $this->wpRoot
+RewriteBase $wpRoot
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . {$this->wpRoot}index.php [L]
+RewriteRule . {$wpRoot}index.php [L]
 </IfModule>
 # END WordPress: Inserted by $this->name
 ";

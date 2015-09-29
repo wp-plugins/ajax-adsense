@@ -210,7 +210,6 @@ function rewriteHref(i, link) {
             .replace(/[?&]target=.*/, '');
     var shortHref = parentHref + (parentHref.match(/\?/) ? '&' : '?') +
             'target=' + rewritePhpExt($(link).attr('href'));
-    ;
     $(link).attr('href', shortHref);
     link.target = '_parent';
   }

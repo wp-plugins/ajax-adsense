@@ -1,6 +1,7 @@
 <?php
 require_once 'lock.php';
 include_once('../debug.php');
+$GLOBALS['ezAdminUrl'] = $ezAdminUrl = plugins_url("/admin/", __DIR__);
 
 function insertAlerts($width = 12) {
   ?>
@@ -101,6 +102,7 @@ function showScreenshot($id) {
 }
 
 function getHeader() {
+  global $ezAdminUrl;
   ob_start();
   $plgName = EzGA::getPlgName(__DIR__);
   $plgSlug = EzGA::getSlug();
@@ -108,10 +110,10 @@ function getHeader() {
   $isPro = EzGA::$isPro;
   $plgPrice = EzGA::$plgPrice;
   if ($isPro && !empty(EzGA::$options['eztheme'])) {
-    $themeCSS = "css/bootstrap-" . strtolower(EzGA::$options['eztheme']) . ".min.css";
+    $themeCSS = $ezAdminUrl . "css/bootstrap-" . strtolower(EzGA::$options['eztheme']) . ".min.css";
   }
   else {
-    $themeCSS = "css/bootstrap-default.min.css";
+    $themeCSS = $ezAdminUrl . "css/bootstrap-default.min.css";
   }
   ?>
   <!DOCTYPE html>
@@ -125,13 +127,13 @@ function getHeader() {
 
       <!-- The styles -->
       <link id="bs-css" href="<?php echo $themeCSS; ?>" rel="stylesheet">
-      <link href="css/bootstrap-editable.css" rel="stylesheet">
-      <link href="css/charisma-app.css" rel="stylesheet">
-      <link href='css/bootstrap-tour.min.css' rel='stylesheet'>
-      <link href="css/font-awesome.min.css" rel="stylesheet">
-      <link href="css/fileinput.min.css" rel="stylesheet">
-      <link href="css/bootstrap-colorpicker.min.css" rel="stylesheet">
-      <link href="css/ez-admin.css" rel="stylesheet">
+      <link href="<?php echo $ezAdminUrl; ?>css/bootstrap-editable.css" rel="stylesheet">
+      <link href="<?php echo $ezAdminUrl; ?>css/charisma-app.css" rel="stylesheet">
+      <link href='<?php echo $ezAdminUrl; ?>css/bootstrap-tour.min.css' rel='stylesheet'>
+      <link href="<?php echo $ezAdminUrl; ?>css/font-awesome.min.css" rel="stylesheet">
+      <link href="<?php echo $ezAdminUrl; ?>css/fileinput.min.css" rel="stylesheet">
+      <link href="<?php echo $ezAdminUrl; ?>css/bootstrap-colorpicker.min.css" rel="stylesheet">
+      <link href="<?php echo $ezAdminUrl; ?>css/ez-admin.css" rel="stylesheet">
       <style type="text/css">
         .popover{width:600px;}
         <?php
@@ -163,7 +165,7 @@ function getHeader() {
       <div class="navbar navbar-default" role="navigation">
 
         <div class="navbar-inner">
-          <a id="index" class="navbar-brand" href="index.php"> <img alt="Ads EZ Logo" src="img/ads-ez.png" class="hidden-xs"/>
+          <a id="index" class="navbar-brand" href="index.php"> <img alt="Ads EZ Logo" src="<?php echo $ezAdminUrl; ?>img/ads-ez.png" class="hidden-xs"/>
             <span><?php echo $plgName; ?></span></a>
           <div class="btn-group pull-right">
             <?php

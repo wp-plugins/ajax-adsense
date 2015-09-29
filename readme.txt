@@ -4,7 +4,7 @@ Donate link: http://buy.thulasidas.com/easy-adsense
 Tags: adsense, google adsense, ads, advertising, easy adsense, google, adsense plugin
 Requires at least: 2.6
 Tested up to: 4.3
-Stable tag: 8.81
+Stable tag: 8.82
 License: GPL2 or later
 
 Easy AdSense manages all aspects of AdSense: insert ads into posts and sidebar, and add a Google Search box. Easiest and most complete AdSense Plugin!
@@ -21,42 +21,42 @@ If you have multiple blogs or websites where you would like your ads to appear, 
 
 = Features =
 
-1. AJAX Plugin for AdSense enforces the Google AdSense policy of not more than three adsense blocks per page.
-2. Easy Adsense provides Sidebar Widgets:
+* AJAX Plugin for AdSense enforces the Google AdSense policy of not more than three adsense blocks per page.
+* Easy Adsense provides Sidebar Widgets:
  - For AdSense for content with custom title.
  - For search with customizable text or image title.
  - For Link Units.
-3. AJAX Plugin for AdSense has a rich set of Options:
+* AJAX Plugin for AdSense has a rich set of Options:
  - Put Link Units or AdSense Blocks in header or footer.
  - Suppress ads on all pages (as opposed to posts), or on the front/home page.
  - Add a customizable mouse-over border decoration on ad blocks.
  - Display adsense blocks based on the post length.
-4. AJAX Plugin for AdSense lets you control over the positioning and display of AdSense blocks in each post or page.
-5. AJAX Plugin for AdSense sports the simplest possible configuration interface -- nothing more than cutting and pasting AdSense code, and with sensible defaults for the few options present, all with clear instructions.
-6. AJAX Plugin for AdSense is internationalized with multiple languages supported.
-7. Popover help for every option in the plugin.
-8. An interface tour to familiarize yourself with the plugin features and layout.
-9. Ability to spawn the plugin interface as a separate tab/window independent of the WordPress admin interface.
+* AJAX Plugin for AdSense lets you control over the positioning and display of AdSense blocks in each post or page.
+* AJAX Plugin for AdSense sports the simplest possible configuration interface -- nothing more than cutting and pasting AdSense code, and with sensible defaults for the few options present, all with clear instructions.
+* AJAX Plugin for AdSense is internationalized with multiple languages supported.
+* Popover help for every option in the plugin.
+* An interface tour to familiarize yourself with the plugin features and layout.
+* Ability to spawn the plugin interface as a separate tab/window independent of the WordPress admin interface.
 
 = Pro Version =
 
 AJAX Plugin for AdSense is the freely distributed version of a premium plugin. The [Pro version](http://buy.thulasidas.com/easy-adsense "Pro version of the AJAX Plugin for AdSense plugin") gives you more features. Here is a list of the Pro features:
 
-1. Safe Content filter: To ensure that your Google AdSense ads show only on those pages that seem to comply with Google AdSense policies, which can be important since some comments may render your pages inconsistent with those policies.
-2. IP filter: Ability to specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons AdSense bans you. These features will minimize your chance of getting banned.
-3. Compatibility mode: To solve the issue of the ad insertion messing up your page appearances when using some themes.
-5. Category/Post Control: Ability to suppress ads on specific categories, posts and pages.
-5. Shortcode Support: Show the ads only on the pages or posts you want, and exactly where you want them.
-6. Mobile Support: Ability to show different sets of ads on mobile devices, or to suppress ads.
-7. Excerpts: Ability to show a configurable number of ads on Excerpts (which make up the home page in some themes).
-8. Option Sets: Multiple option sets can be defined and easily switched between.
-9. Suspend Ads: Ability to temporarily suppress ad serving.
-10. Admin Interface Themes: Multiple color schemes for the admin interface.
-11. Ad Serving Statistics: Keep an eye on your ad serving statistics to make sure that Google is not shortchanging you. (Optional paid module)
+* Safe Content filter: To ensure that your Google AdSense ads show only on those pages that seem to comply with Google AdSense policies, which can be important since some comments may render your pages inconsistent with those policies.
+* IP filter: Ability to specify a list of computers where your ads will not be shown, in order to prevent accidental clicks on your own ads -- one of the main reasons AdSense bans you. These features will minimize your chance of getting banned.
+* Compatibility mode: To solve the issue of the ad insertion messing up your page appearances when using some themes.
+* Category/Post Control: Ability to suppress ads on specific categories, posts and pages.
+* Shortcode Support: Show the ads only on the pages or posts you want, and exactly where you want them.
+* Mobile Support: Ability to show different sets of ads on mobile devices, or to suppress ads.
+* Excerpts: Ability to show a configurable number of ads on Excerpts (which make up the home page in some themes).
+* Option Sets: Multiple option sets can be defined and easily switched between.
+* Suspend Ads: Ability to temporarily suppress ad serving.
+* Admin Interface Themes: Multiple color schemes for the admin interface.
+* Ad Serving Statistics: Keep an eye on your ad serving statistics to make sure that Google is not shortchanging you. (Optional paid module)
 
 == Upgrade Notice ==
 
-Killing the option to allow update checks.
+Improving the speed of admin page loading.
 
 == Screenshots ==
 
@@ -177,6 +177,7 @@ A big "Thank You" to all my translators. Easy AdSense V2.6+ sports an *Easy Tran
 
 == Change Log ==
 
+* V8.82: Improving the speed of admin page loading. [Sep 30, 2015]
 * V8.81: Killing the option to allow update checks. [Sep 26, 2015]
 * V8.80: Changes to make the plugin work on nginx and Microsoft servers. [Sep 20, 2015]
 * V8.75: Ensuring usability on touch-screen devices. [Sep 17, 2015]

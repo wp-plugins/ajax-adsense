@@ -11,14 +11,14 @@
 </div><!--/.fluid-container-->
 
 <!-- external javascript -->
-<script src="js/ez-admin.js"></script>
-<script src="js/bootstrap-colorpicker.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/bootstrap-editable.min.js"></script>
-<script src="js/bootstrap-tour.min.js"></script>
-<script src="js/fileinput.min.js"></script>
-<script src="js/bootbox.min.js"></script>
+<script src="<?php echo $ezAdminUrl; ?>js/ez-admin.js"></script>
+<script src="<?php echo $ezAdminUrl; ?>js/bootstrap-colorpicker.min.js"></script>
+<script src="<?php echo $ezAdminUrl; ?>js/bootstrap.min.js"></script>
+<script src="<?php echo $ezAdminUrl; ?>js/bootstrap-editable.min.js"></script>
+<script src="<?php echo $ezAdminUrl; ?>js/bootstrap-tour.min.js"></script>
+<script src="<?php echo $ezAdminUrl; ?>js/fileinput.min.js"></script>
+<script src="<?php echo $ezAdminUrl; ?>js/bootbox.min.js"></script>
 <!-- application specific -->
-<script src="js/charisma.js"></script>
+<script src="<?php echo $ezAdminUrl; ?>js/charisma.js"></script>
 </body>
 </html>
