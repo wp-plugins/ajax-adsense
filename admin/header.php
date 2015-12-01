@@ -182,6 +182,15 @@ function getHeader() {
                 ?>
               </span>
             </a>&nbsp;
+              <?php
+              if (!empty(EzGA::$options['show_google_translate'])) {
+                ?>
+                <span id='GoogleTranslatorWidget' style='display:inline-block'>
+                  <span id='google_translate_element'></span>
+                </span>
+                <?php
+              }
+              ?>
           </div>
         </div>
       </div>
@@ -280,4 +289,11 @@ EOF;
           }
           http_response_code(200);
           echo $header;
+          
+      if (version_compare(PHP_VERSION, "5.4.0", "<")) {
+        $warning = EzGA::getPlgName() . " requires PHP V5.4 or higher for some of its advanced features."
+                . " You are using PHP Version " . PHP_VERSION
+                . ". Please get your PHP upgraded on your server.";
+        EzGA::flashWarning($warning, true);
+      }
 

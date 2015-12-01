@@ -4,7 +4,7 @@ Donate link: http://buy.thulasidas.com/easy-adsense
 Tags: adsense, google adsense, ads, advertising, easy adsense, google, adsense plugin
 Requires at least: 2.6
 Tested up to: 4.3
-Stable tag: 8.82
+Stable tag: 8.92
 License: GPL2 or later
 
 Easy AdSense manages all aspects of AdSense: insert ads into posts and sidebar, and add a Google Search box. Easiest and most complete AdSense Plugin!
@@ -19,21 +19,24 @@ If you have multiple blogs or websites where you would like your ads to appear, 
 
 *Easy AdSense admin interface is feature-rich, user-friendly and functional. Please visit this fully operational* **[live demo site](http://demo.thulasidas.com/easy-adsense "Play with Easy AdSense Admin Interface")** *to see what it can do for you.*
 
+ **Now available in your language using Google Translate.**
+
 = Features =
 
-* AJAX Plugin for AdSense enforces the Google AdSense policy of not more than three adsense blocks per page.
-* Easy Adsense provides Sidebar Widgets:
- - For AdSense for content with custom title.
+* Beautifully designed, fully responsive, intuitive interface.
+* Inline editing and instant saving of your options with AJAX (no more form submit/refresh etc.)
+* Enforces the Google AdSense policy of not more than three adsense blocks per page.
+* Sidebar Widgets:
+ - For AdSense block with custom title.
  - For search with customizable text or image title.
  - For Link Units.
-* AJAX Plugin for AdSense has a rich set of Options:
+* Rich set of Options:
  - Put Link Units or AdSense Blocks in header or footer.
  - Suppress ads on all pages (as opposed to posts), or on the front/home page.
  - Add a customizable mouse-over border decoration on ad blocks.
  - Display adsense blocks based on the post length.
-* AJAX Plugin for AdSense lets you control over the positioning and display of AdSense blocks in each post or page.
-* AJAX Plugin for AdSense sports the simplest possible configuration interface -- nothing more than cutting and pasting AdSense code, and with sensible defaults for the few options present, all with clear instructions.
-* AJAX Plugin for AdSense is internationalized with multiple languages supported.
+* Control over the positioning and display of AdSense blocks in each post or page.
+* Simplest possible configuration interface -- nothing more than cutting and pasting AdSense code, and with sensible defaults for the few options present, all with clear instructions.
 * Popover help for every option in the plugin.
 * An interface tour to familiarize yourself with the plugin features and layout.
 * Ability to spawn the plugin interface as a separate tab/window independent of the WordPress admin interface.
@@ -56,7 +59,7 @@ AJAX Plugin for AdSense is the freely distributed version of a premium plugin. T
 
 == Upgrade Notice ==
 
-Improving the speed of admin page loading.
+Making the admin menu dynamic (optionally) in standalone mode. Improving DB layer error handling.
 
 == Screenshots ==
 
@@ -177,6 +180,10 @@ A big "Thank You" to all my translators. Easy AdSense V2.6+ sports an *Easy Tran
 
 == Change Log ==
 
+* V8.92: Making the admin menu dynamic (optionally) in standalone mode. Improving DB layer error handling. [Nov 29, 2015]
+* V8.91: Warning about PHP V5.4 requirement on the admin page. [Nov 8, 2015]
+* V8.90: Admin pages in your language using Google translation. [Oct 22, 2015]
+* V8.83: Renaming the Mobile_Detect class for compatibility. [Oct 14, 2015]
 * V8.82: Improving the speed of admin page loading. [Sep 30, 2015]
 * V8.81: Killing the option to allow update checks. [Sep 26, 2015]
 * V8.80: Changes to make the plugin work on nginx and Microsoft servers. [Sep 20, 2015]

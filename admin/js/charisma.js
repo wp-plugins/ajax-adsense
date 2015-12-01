@@ -45,7 +45,7 @@ $(document).ready(function () {
   //highlight current / active link
   $('ul.main-menu li a').each(function (i, a) {
     if (a.href === window.location.href ||
-            a.href.replace(/\.php/, '.ezp') ===  window.location.href) {
+            a.href.replace(/\.php/, '.ezp') === window.location.href) {
       var dad = a.parentElement;
       $(dad).addClass('active');
       var grandpa = $(dad).parent().closest('li.dropdown');
@@ -65,7 +65,15 @@ $(document).ready(function () {
     });
   });
 
-  $('.accordion li.active:first').parents('ul').slideDown();
+  $('li.dynamic-menu').hover(function (e) {
+    e.preventDefault();
+    var $ul = $(this).children('ul');
+    var $sisters = $(this).nextAll('li.accordion').children('ul.nav');
+    $ul.slideDown();
+    $sisters.slideUp();
+  });
+
+  $('.accordion li.active:first').parents('ul').show();
 
   //other things to do on document ready, separated for ajax calls
   docReady();
@@ -78,6 +86,14 @@ function ezPopUp(url, title, w, h) {
   var top = wTop + (window.innerHeight / 2) - (h / 2);
   window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
   return true;
+}
+
+function ezReload() {
+  var winHref = window.location.href;
+  if (inIframe()) {
+    winHref += (winHref.match(/\?/) ? '&' : '?') + 'inframe';
+  }
+  window.location.href = winHref;
 }
 
 function initXedit() {
@@ -309,8 +325,17 @@ function docReady() {
   }
 
   if (typeof $().dataTable === 'function') {
-    $('.data-table').dataTable({"aaSorting": []});
-    $('.data-table-longer').dataTable({
+    var pageLength = 10;
+    $('.data-table').each(function () {
+      var attr = $(this).attr('data-pagination');
+      if (typeof attr !== typeof undefined && attr !== false) {
+        pageLength = parseInt(attr);
+      }
+    }).show().dataTable({
+      pageLength: pageLength,
+      "aaSorting": []
+    });
+    $('.data-table-longer').show().dataTable({
       pageLength: 20,
       aaSorting: []
     });

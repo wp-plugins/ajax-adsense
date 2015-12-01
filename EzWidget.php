@@ -8,7 +8,7 @@ abstract class EzWidget extends WP_Widget {
   function __construct($className = 'EzWidget', $widgetName = '') {
     $this->widgetName = $widgetName;
     $widget_ops = array('classname' => $className,
-        'description' => sprintf(__("Show %s ad block in your sidebar as a widget.", 'easy-ads'), $widgetName));
+        'description' => sprintf(__("Show %s ad block in your sidebar as a widget.", 'easy-adsenser'), $widgetName));
     parent::__construct($className, $widgetName, $widget_ops);
   }
 
@@ -46,7 +46,7 @@ abstract class EzWidget extends WP_Widget {
   function form($instance) {
     require 'EzGA.php';
     $plgName = EzGA::getPlgName();
-    echo "<p>" . sprintf(__("Configure it at %s", 'easy-ads'), "<br /><a href='options-general.php?page=wp-google-adsense.php'> " . __("Settings", 'easy-ads') . " &rarr; $plgName</a></p>\n");
+    echo "<p>" . sprintf(__("Configure it at %s", 'easy-adsenser'), "<br /><a href='options-general.php?page=wp-google-adsense.php'> " . __("Settings", 'easy-adsenser') . " &rarr; $plgName</a></p>\n");
   }
 
   static function setPlugin(&$plg) {

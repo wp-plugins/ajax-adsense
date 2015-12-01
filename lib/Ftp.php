@@ -99,34 +99,34 @@ if (!class_exists('Ftp')) {
           $display = '';
         }
         if (empty($this->status)) {
-          $btn = "<a href='' class='btn-sm btn-success' title='Your FTP credentials look fine and are saved in your database. If you modify them below, click on this button to check again.' data-toggle='tooltip'><i class='glyphicon glyphicon-thumbs-up'></i> All Okay</a>";
+          $btn = "<a href='' class='btn-sm btn-success ftp' title='Your FTP credentials look fine and are saved in your database. If you modify them below, click on this button to check again.' data-toggle='tooltip'><i class='glyphicon glyphicon-thumbs-up'></i> All Okay</a>";
         }
         else {
-          $btn = "<a href='' class='btn-sm btn-warning' title='Your FTP credentials do not look right. Please re-enter them and click on this button to check again.' data-toggle='tooltip'><i class='glyphicon glyphicon-thumbs-down'></i> Check Again</a>";
+          $btn = "<a href='' class='btn-sm btn-warning ftp' title='Your FTP credentials do not look right. Please re-enter them and click on this button to check again.' data-toggle='tooltip'><i class='glyphicon glyphicon-thumbs-down'></i> Check Again</a>";
         }
         $options = array();
-        $options['ftp_server'] = array('name' => __('FTP Server', 'easy-paypal'),
+        $options['ftp_server'] = array('name' => __('FTP Server', 'easy-common'),
             'value' => 'localhost',
             'validator' => 'notNull',
-            'help' => __('Enter your FPT server name.', 'easy-paypal'),
+            'help' => __('Enter your FPT server name.', 'easy-common'),
             'dataTpl' => 'none',
             'dataMode' => '');
         if (defined('FTP_HOST')) {
           $options['ftp_server']['value'] = FTP_HOST;
         }
-        $options['ftp_user'] = array('name' => __('FTP User Name', 'easy-paypal'),
+        $options['ftp_user'] = array('name' => __('FTP User Name', 'easy-common'),
             'value' => '',
             'validator' => 'notNull',
-            'help' => __('Enter your FPT user name.', 'easy-paypal'),
+            'help' => __('Enter your FPT user name.', 'easy-common'),
             'dataTpl' => 'none',
             'dataMode' => '');
         if (defined('FTP_USER')) {
           $options['ftp_user']['value'] = FTP_USER;
         }
-        $options['ftp_password'] = array('name' => __('FTP Password', 'easy-paypal'),
+        $options['ftp_password'] = array('name' => __('FTP Password', 'easy-common'),
             'value' => '',
             'validator' => 'notNull',
-            'help' => __('Enter your FPT password.', 'easy-paypal'),
+            'help' => __('Enter your FPT password.', 'easy-common'),
             'dataTpl' => 'none',
             'dataMode' => '');
         if (defined('FTP_PASS')) {
@@ -136,9 +136,9 @@ if (!class_exists('Ftp')) {
           }
         }
         if ($this->_showRootDir) {
-          $options['ftp_rootdir'] = array('name' => __('FTP Root Directory', 'easy-paypal'),
+          $options['ftp_rootdir'] = array('name' => __('FTP Root Directory', 'easy-common'),
               'value' => '',
-              'help' => __('When you logon to your server using FTP, it puts you in a folder. In most cases, we can discover this folder automatically. So you can start by leaving this option empty, but may have to come back and enter the value if prompted later.', 'easy-paypal'),
+              'help' => __('When you logon to your server using FTP, it puts you in a folder. In most cases, we can discover this folder automatically. So you can start by leaving this option empty, but may have to come back and enter the value if prompted later.', 'easy-common'),
               'dataTpl' => 'none',
               'dataMode' => '');
         }

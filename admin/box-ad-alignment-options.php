@@ -21,18 +21,18 @@ else {
 }
 $no = 'no';
 $choices = compact('left', 'floatLeft', 'center', 'right', 'floatRight', 'no');
-$ezOptions[$top] = array('name' => __("Top", 'easy-ads'),
-    'help' => __("Where to show the top ad block? Select Left, Center, Right, or suppress this ad block. Select the <b>Wrap</b> Left, Center or Right option to wrap (or flow) the text around the ad block.", 'easy-ads'),
+$ezOptions[$top] = array('name' => __("Top", 'easy-adsenser'),
+    'help' => __("Where to show the top ad block? Select Left, Center, Right, or suppress this ad block. Select the <b>Wrap</b> Left, Center or Right option to wrap (or flow) the text around the ad block.", 'easy-adsenser'),
     'value' => $floatLeft,
     'type' => 'radio',
     'options' => $choices);
-$ezOptions[$middle] = array('name' => __("Middle", 'easy-ads'),
-    'help' => __("Where to show the mid-text ad block? Select left, center, right, or suppress this ad block.", 'easy-ads'),
+$ezOptions[$middle] = array('name' => __("Middle", 'easy-adsenser'),
+    'help' => __("Where to show the mid-text ad block? Select left, center, right, or suppress this ad block.", 'easy-adsenser'),
     'value' => $floatRight,
     'type' => 'radio',
     'options' => $choices);
-$ezOptions[$bottom] = array('name' => __("Bottom", 'easy-ads'),
-    'help' => __("Where to show the bottom ad block? Select left, center, right, or suppress this ad block.", 'easy-ads'),
+$ezOptions[$bottom] = array('name' => __("Bottom", 'easy-adsenser'),
+    'help' => __("Where to show the bottom ad block? Select left, center, right, or suppress this ad block.", 'easy-adsenser'),
     'value' => $floatRight,
     'type' => 'radio',
     'options' => $choices);

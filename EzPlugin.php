@@ -102,9 +102,9 @@ if (!class_exists("EzPlugin")) {
           return $this->getMSMsg();
         default:
           $msg = "<p>Depending on your server, follow the steps below.</p>";
-          $msg .=  $this->getNginxMsg();
-          $msg .=  $this->getMSMsg();
-          $msg .=  $this->getApacheMsg();
+          $msg .= $this->getNginxMsg();
+          $msg .= $this->getMSMsg();
+          $msg .= $this->getApacheMsg();
         case "apache":
           $file = ABSPATH . ".htaccess";
           if (empty($this->wpRoot)) {
@@ -293,7 +293,7 @@ RewriteRule . {$wpRoot}index.php [L]
       $target = preg_replace("/\.ezp$/", ".php", $target, 1);
       if (file_exists($target)) {
         chdir(dirname($target));
-        $ext = substr($target, -3);
+        $ext = pathinfo($target, PATHINFO_EXTENSION);
         if ($ext == 'php') {
           include $target;
         }

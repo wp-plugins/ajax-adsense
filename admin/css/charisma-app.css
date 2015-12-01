@@ -315,8 +315,6 @@ div.center, p.center, img.center {
     height: 60px;
 }
 
-
-
 .navbar-inner .btn-group {
     margin: 7px 5px 0 5px;
 }
@@ -659,4 +657,19 @@ ul.github-buttons li {
     .ch-container {
         padding: 0 20px;
     }
+}
+
+/* Google Translator top bar and tooltips */
+.goog-te-banner-frame.skiptranslate {display: none !important;}
+body { top: 0px !important; }
+.goog-tooltip {
+    display: none !important;
+}
+.goog-tooltip:hover {
+    display: none !important;
+}
+.goog-text-highlight {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
 }

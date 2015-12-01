@@ -3,7 +3,7 @@
 $ezOptions = array();
 
 $ezOptions['text_leadin'] = array('name' => __('Lead-in AdSense Text', 'easy-adsenser') . "<br><small>" . __('(Appears near the beginning of the post)', 'easy-adsenser') . "</small>",
-    'help' => __("This ad block will appear near the top of your posts and pages. Generate your AdSense code from your Google AdSense page and paste it here.", 'easy-ads'),
+    'help' => __("This ad block will appear near the top of your posts and pages. Generate your AdSense code from your Google AdSense page and paste it here.", 'easy-adsenser'),
     'type' => 'textarea',
     'value' => EzGA::$options['defaultText']);
 $ezOptions['margin_leadin'] = array('name' => __('Margin', 'easy-adsenser'),
@@ -24,7 +24,7 @@ $ezOptions['header_leadin'] = array('name' => __('Postion', 'easy-adsenser'),
     'value' => '');
 
 $ezOptions['text_midtext'] = array('name' => __('Mid-Post AdSense Text', 'easy-adsenser') . "<br><small>" . __('(Appears near the middle of the post)', 'easy-adsenser') . "</small>",
-    'help' => __("This ad block will appear near the middle of your posts and pages. Generate your AdSense code from your Google AdSense page and paste it here.", 'easy-ads'),
+    'help' => __("This ad block will appear near the middle of your posts and pages. Generate your AdSense code from your Google AdSense page and paste it here.", 'easy-adsenser'),
     'type' => 'textarea',
     'value' => EzGA::$options['defaultText']);
 $ezOptions['margin_midtext'] = array('name' => __('Margin', 'easy-adsenser'),
@@ -44,7 +44,7 @@ $ezOptions['force_midad'] = array('name' => __('Force Mid-post Ad?', 'easy-adsen
     'value' => 0);
 
 $ezOptions['text_leadout'] = array('name' => __('Lead-in AdSense Text', 'easy-adsenser') . "<br><small>" . __('(Appears near the end of the post)', 'easy-adsenser') . "</small>",
-    'help' => __("This ad block will appear near the top of your posts and pages. Generate your AdSense code from your Google AdSense page and paste it here.", 'easy-ads'),
+    'help' => __("This ad block will appear near the top of your posts and pages. Generate your AdSense code from your Google AdSense page and paste it here.", 'easy-adsenser'),
     'type' => 'textarea',
     'value' => EzGA::$options['defaultText']);
 $ezOptions['margin_leadout'] = array('name' => __('Margin', 'easy-adsenser'),
@@ -98,13 +98,13 @@ $ezOptions['border_width'] = array('name' => __('Border Width', 'easy-adsenser')
     'dataTpl' => "data-tpl='<input type=\"text\" style=\"width:60px\">'",
     'value' => "1");
 
-$ezOptions['border_normal'] = array('name' => __("Color: Normal", 'easy-ads'),
-    'help' => __("Specify the normal border color. The mouse-over color is specified in the next color picker.", 'easy-ads'),
+$ezOptions['border_normal'] = array('name' => __("Color: Normal", 'easy-adsenser'),
+    'help' => __("Specify the normal border color. The mouse-over color is specified in the next color picker.", 'easy-adsenser'),
     'value' => "FF0000",
     'type' => 'colorpicker2');
 
-$ezOptions['border_color'] = array('name' => __("Color: Hover", 'easy-ads'),
-    'help' => __("Specify the border color when the user hovers his mouse over the ad.", 'easy-ads'),
+$ezOptions['border_color'] = array('name' => __("Color: Hover", 'easy-adsenser'),
+    'help' => __("Specify the border color when the user hovers his mouse over the ad.", 'easy-adsenser'),
     'value' => "0000FF",
     'type' => 'colorpicker2');
 
@@ -140,7 +140,7 @@ $ezOptions['max_link'] = array('name' => __('Link-backs to Unreal Blog', 'easy-a
 );
 
 $ezOptions['text_widget'] = array('name' => __('AdSense Widget Text', 'easy-adsenser') . "<br><small>" . __('(Appears in the Sidebar as a Widget)', 'easy-adsenser') . "</small>",
-    'help' => __("This ad block will appear in your sidebar as a . Generate your AdSense code from your Google AdSense page and paste it here.", 'easy-ads'),
+    'help' => __("This ad block will appear in your sidebar as a . Generate your AdSense code from your Google AdSense page and paste it here.", 'easy-adsenser'),
     'type' => 'textarea',
     'value' => EzGA::$options['defaultText']);
 $ezOptions['margin_widget'] = array('name' => __('Margin', 'easy-adsenser'),
@@ -158,7 +158,7 @@ $ezOptions['kill_widget_title'] = array('name' => __('Hide Title?', 'easy-adsens
     'type' => 'checkbox',
     'value' => 0);
 $ezOptions['show_widget'] = array('name' => __('Ad Alignment', 'easy-adsenser') . " <small>" . __('(Where to show?)', 'easy-adsenser') . "</small>",
-    'help' => __("Decide where (or whether) to show this widget and how to align it.", 'easy-ads'),
+    'help' => __("Decide where (or whether) to show this widget and how to align it.", 'easy-adsenser'),
     'value' => 'no',
     'type' => 'radio2',
     'options' => array('text-align:left' => __('Align Left', 'easy-adsenser'),
@@ -167,7 +167,7 @@ $ezOptions['show_widget'] = array('name' => __('Ad Alignment', 'easy-adsenser') 
         'no' => __('Suppress', 'easy-adsenser')));
 
 $ezOptions['text_lu'] = array('name' => __('AdSense Link-Units Text', 'easy-adsenser') . "<br><small>" . __('(Appears in the Sidebar as a Widget)', 'easy-adsenser') . "</small>",
-    'help' => __("This ad block will appear in your sidebar as a widget. Generate your AdSense code from your Google AdSense page and paste it here.", 'easy-ads'),
+    'help' => __("This ad block will appear in your sidebar as a widget. Generate your AdSense code from your Google AdSense page and paste it here.", 'easy-adsenser'),
     'type' => 'textarea',
     'value' => EzGA::$options['defaultText']);
 $ezOptions['margin_lu'] = array('name' => __('Margin', 'easy-adsenser'),
@@ -185,7 +185,7 @@ $ezOptions['kill_lu_title'] = array('name' => __('Hide Title?', 'easy-adsenser')
     'type' => 'checkbox',
     'value' => 0);
 $ezOptions['show_lu'] = array('name' => __('Ad Alignment', 'easy-adsenser') . " <small>" . __('(Where to show?)', 'easy-adsenser') . "</small>",
-    'help' => __("Decide where (or whether) to show this widget and how to align it.", 'easy-ads'),
+    'help' => __("Decide where (or whether) to show this widget and how to align it.", 'easy-adsenser'),
     'value' => 'no',
     'type' => 'radio2',
     'options' => array('text-align:left' => __('Align Left', 'easy-adsenser'),
@@ -194,7 +194,7 @@ $ezOptions['show_lu'] = array('name' => __('Ad Alignment', 'easy-adsenser') . " 
         'no' => __('Suppress', 'easy-adsenser')));
 
 $ezOptions['text_gsearch'] = array('name' => __('Google Search Widget', 'easy-adsenser') . "<br><small>" . __('(Adds a Google Search Box to your sidebar)', 'easy-adsenser') . "</small>",
-    'help' => __("This widget will appear as a Google search box in your sidebar. Generate your AdSense code from your Google AdSense page and paste it here.", 'easy-ads'),
+    'help' => __("This widget will appear as a Google search box in your sidebar. Generate your AdSense code from your Google AdSense page and paste it here.", 'easy-adsenser'),
     'type' => 'textarea',
     'value' => EzGA::$options['defaultText']);
 $ezOptions['margin_gsearch'] = array('name' => __('Margin', 'easy-adsenser'),
@@ -204,7 +204,7 @@ $ezOptions['margin_gsearch'] = array('name' => __('Margin', 'easy-adsenser'),
     'dataTpl' => "data-tpl='<input type=\"text\" style=\"width:60px\">'",
     'value' => "12");
 $ezOptions['title_gsearch'] = array('name' => __('Search Title', 'easy-adsenser') . " <small>" . __('(Title of the Google Search Widget)', 'easy-adsenser') . "</small>",
-    'help' => __("Choose a title for your Google Search Widget. Depending on your theme background, you can choose a dark or light image, or a custom text title. You can also suppress the widget altogether.", 'easy-ads'),
+    'help' => __("Choose a title for your Google Search Widget. Depending on your theme background, you can choose a dark or light image, or a custom text title. You can also suppress the widget altogether.", 'easy-adsenser'),
     'value' => 'no',
     'type' => 'radio2',
     'options' => array('dark' => "<img src='img/google-dark.gif' alt='Google (dark)' style='background:black;vertical-align:-50%;' />",

@@ -1,27 +1,28 @@
 <h4>Play with a Demo</h4>
-<ul>
-  <li>If you would like to play with the admin interface without messing up your installation, <a href="http://demo.thulasidas.com/google-adsense" title='Visit the demo site to play with the admin interface' data-toggle='tooltip' target="_blank">please visit the demo site</a>.</li>
-</ul>
+If you would like to play with the admin interface without messing up your installation, <a href="http://demo.thulasidas.com/google-adsense" title='Visit the demo site to play with the admin interface' data-toggle='tooltip' target="_blank">please visit the demo site</a>.
 <div id='supportChannels'>
   <h4>Need Support?</h4>
   <ul>
     <?php
     $plgSlug = EzGA::getSlug();
-    $verbose = array('name' => __('Diagnostic Comments', 'ads-ez'),
+    $verbose = array('name' => __('Diagnostic Comments', 'easy-adsenser'),
         'type' => 'checkbox',
-        'help' => __('The content filter in the plugin can add diagnostic comments to the HTML code, which could have security implications. Please turn it on only if you need to contact the plugin author, or track down some bugs.', 'ads-ez'),
+        'help' => __('The content filter in the plugin can add diagnostic comments to the HTML code, which could have security implications. Please turn it on only if you need to contact the plugin author, or track down some bugs.', 'easy-adsenser'),
         'value' => 0);
-    $verboseBox = '<div id="verboseBox" class="col-md-12" style="display:none"><table class="table table-striped table-bordered responsive">
+    $verboseBox = '<div id="verboseBox" class="col-md-12" style="display:none">
+    <table class="table table-striped table-bordered responsive">
       <thead>
         <tr>
           <th style="width:50%;min-width:150px">Option</th>
           <th style="width:55%;min-width:80px">Value</th>
           <th class="center-text" style="width:15%;min-width:50px">Help</th>
         </tr>
-      </thead>' .
+      </thead>
+      <tbody>' .
             EzGA::renderOption('verbose', $verbose) .
             '</tbody>
-    </table></div>';
+    </table>
+    </div>';
     ?>
     <li>Please check the carefully prepared <a href="http://www.thulasidas.com/plugins/<?php echo $plgSlug; ?>#faq" class="popup-long" title='Your question or issue may be already answered or resolved in the FAQ' data-toggle='tooltip'> Plugin FAQ</a> for answers.</li>
     <?php
@@ -45,11 +46,26 @@
   echo $verboseBox;
   ?>
 </div>
-<h4>Happy with this plugin?</h4>
-<ul>
-  <li>Please leave a short review and rate it at <a href="https://wordpress.org/plugins/<?php echo $plgSlug; ?>-lite/" class="popup-long" title='Please help the author and other users by leaving a short review for this plugin and by rating it' data-toggle='tooltip'>WordPress</a>. Thanks!</li>
-</ul>
-
+<h4>Happy with this Plugin?</h4>
+Please leave a short review and rate it at <a href="https://wordpress.org/plugins/<?php echo $plgSlug; ?>-lite/" class="popup-long" title='Please help the author and other users by leaving a short review for this plugin and by rating it' data-toggle='tooltip'>WordPress</a>. Thanks!
+<?php
+$inEnglish = true;
+if (!empty($GLOBALS['locale']) && strpos($GLOBALS['locale'], 'en') !== 0) {
+  $inEnglish = false;
+}
+if (!empty(EzGA::$options['show_google_translate']) || !$inEnglish) {
+  $show_google_translate = array('name' => __('Enable Google Translation of Admin Pages?', 'easy-adsenser'),
+      'help' => '',
+      'type' => 'checkbox',
+      'reload' => true,
+      'value' => !empty(EzGA::$options['show_google_translate']));
+  ?>
+<h4>Admin Pages in your <a href='i18n.php'>Language</a></h4>
+  Enable machine tranaslation by Google?
+  <?php echo EzGA::renderOptionValue('show_google_translate', $show_google_translate); ?>
+  <?php
+}
+?>
 <div class="clearfix"></div>
 <script>
   var xeditHandler = 'ajax/options.php';
